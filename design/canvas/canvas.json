@@ -1,0 +1,24 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-20T10:00:00Z"},
+  "title": "Pastel Notes App",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1000, "title": "Today — daily plan", "expand": "fill", "is_interactive": true},
+    "Week.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 1000, "title": "This week — weekly plan", "expand": "fill", "is_interactive": true},
+    "Mobile.dc.html": {"x": 3040, "y": 0, "w": 390, "h": 844, "title": "Mobile — Today & capture", "is_interactive": true},
+    "Project.dc.html": {"x": 0, "y": 1120, "w": 1440, "h": 1040, "title": "Project — longer work", "expand": "fill", "is_interactive": true},
+    "Notes.dc.html": {"x": 1520, "y": 1120, "w": 1440, "h": 1000, "title": "Notes — editor", "expand": "fill", "is_interactive": true},
+    "SignIn.dc.html": {"x": 0, "y": 2580, "w": 1440, "h": 900, "title": "Auth — Sign in", "expand": "fill", "is_interactive": true},
+    "SignUp.dc.html": {"x": 1520, "y": 2580, "w": 1440, "h": 900, "title": "Auth — Create account", "expand": "fill", "is_interactive": true},
+    "Reset.dc.html": {"x": 3040, "y": 2580, "w": 1440, "h": 900, "title": "Auth — Reset password", "expand": "fill", "is_interactive": true},
+    "MobileSignIn.dc.html": {"x": 4560, "y": 2580, "w": 390, "h": 844, "title": "Auth — Mobile sign in", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "Week.dc.html", "Mobile.dc.html", "Project.dc.html", "Notes.dc.html", "SignIn.dc.html", "SignUp.dc.html", "Reset.dc.html", "MobileSignIn.dc.html"],
+  "notes": {
+    "title": {"x": 0, "y": -300, "text": "Daybook — notes, daily & weekly planning, projects", "kind": "title1", "maxW": 3430},
+    "auth": {"x": 0, "y": 2280, "text": "Sign in, create account, reset password", "kind": "title1", "maxW": 4950}
+  },
+  "designSystems": [{"title": "Daybook Design System", "namespace": "daybook", "artifact": "https://claude.ai/artifact/Gmbo8YtCRf84VXVXazgcBS", "version": null, "copiedAt": "2026-10-20T12:10:00Z"}]
+}

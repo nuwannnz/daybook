@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daybook — Mobile Today</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/daybook/tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:var(--bg)}
+a{color:var(--accent)}a:hover{color:var(--ink)}
+button{font:inherit;cursor:pointer}
+textarea::placeholder{color:var(--ink-done)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; font-family: var(--font-sans); color: var(--ink); background: var(--bg)">
+
+  <div style="height: 764px; overflow-y: auto; box-sizing: border-box; padding: 28px 20px 24px; display: flex; flex-direction: column; gap: 20px">
+    <header style="display: flex; align-items: flex-end; justify-content: space-between">
+      <div>
+        <p style="margin: 0 0 2px; font-size: 13px; font-weight: 600; color: var(--ink-muted)">Tue, Oct 20</p>
+        <h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.02em">Today</h1>
+      </div>
+      <button aria-label="Search" style="width: 44px; height: 44px; border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-md); color: var(--ink-soft); display: grid; place-items: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      </button>
+    </header>
+
+    <div style="padding: 14px 16px; border-radius: var(--radius-xl); background: var(--lavender-bg); color: var(--lavender-ink); display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase">Now · until 10:30</span>
+      <span style="font-size: 16px; font-weight: 600; color: var(--ink)">Deep work · Homepage wireframe</span>
+      <span style="font-size: 13px">Next: Team standup at 11:00</span>
+    </div>
+
+    <section aria-labelledby="m-top" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="m-top" style="margin: 0; font-size: 16px; font-weight: 700">Top 3</h2>
+      <sc-for list="{{top}}" as="t" hint-placeholder-count="3">
+      <label style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 6px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md)">
+        <input type="checkbox" checked="{{t.done}}" onChange="{{t.toggle}}" style="width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--accent)">
+        <sc-if value="{{t.done}}" hint-placeholder-val="{{false}}"><span style="flex: 1; font-size: 15px; color: var(--ink-done); text-decoration: line-through">{{t.text}}</span></sc-if>
+        <sc-if value="{{t.open}}" hint-placeholder-val="{{true}}"><span style="flex: 1; font-size: 15px; font-weight: 500">{{t.text}}</span></sc-if>
+        <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 4px; flex: none; background: {{t.dot}}"></span>
+      </label>
+      </sc-for>
+    </section>
+
+    <section aria-labelledby="m-also" style="display: flex; flex-direction: column; gap: 8px">
+      <h2 id="m-also" style="margin: 0; font-size: 16px; font-weight: 700">Also today</h2>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 2px 4px">
+        <sc-for list="{{rest}}" as="t" hint-placeholder-count="3">
+        <label style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 10px">
+          <input type="checkbox" checked="{{t.done}}" onChange="{{t.toggle}}" style="width: 18px; height: 18px; margin: 0; flex: none; accent-color: var(--accent)">
+          <sc-if value="{{t.done}}" hint-placeholder-val="{{false}}"><span style="flex: 1; font-size: 14px; color: var(--ink-done); text-decoration: line-through">{{t.text}}</span></sc-if>
+          <sc-if value="{{t.open}}" hint-placeholder-val="{{true}}"><span style="flex: 1; font-size: 14px">{{t.text}}</span></sc-if>
+          <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 4px; flex: none; background: {{t.dot}}"></span>
+        </label>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+
+  <button onClick="{{openSheet}}" aria-label="Capture" style="position: absolute; right: 20px; bottom: 96px; width: 60px; height: 60px; border: 0; border-radius: var(--radius-xl); background: var(--primary); color: var(--on-primary); display: grid; place-items: center; box-shadow: var(--shadow-fab)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+  </button>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 80px; box-sizing: border-box; padding: 6px 12px 18px; background: var(--surface); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))">
+    <button aria-current="page" style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--accent); font-size: 11px; font-weight: 700">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      Today
+    </button>
+    <button style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--ink-muted); font-size: 11px; font-weight: 600">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+      Week
+    </button>
+    <button style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--ink-muted); font-size: 11px; font-weight: 600">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 13h7M9 17h5"></path></svg>
+      Notes
+    </button>
+    <button style="border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: var(--ink-muted); font-size: 11px; font-weight: 600">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"></rect><rect x="14" y="3" width="7" height="7" rx="2"></rect><rect x="3" y="14" width="7" height="7" rx="2"></rect><rect x="14" y="14" width="7" height="7" rx="2"></rect></svg>
+      Projects
+    </button>
+  </nav>
+
+  <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{false}}">
+  <div style="position: absolute; inset: 0; background: rgba(31,29,43,0.28)">
+    <button onClick="{{closeSheet}}" aria-label="Close capture" style="position: absolute; inset: 0; border: 0; background: transparent; cursor: default"></button>
+    <div role="dialog" aria-label="Capture" style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 10px 20px 28px; background: var(--surface); border-radius: var(--radius-sheet) var(--radius-sheet) 0 0; display: flex; flex-direction: column; gap: 14px">
+      <span aria-hidden="true" style="align-self: center; width: 40px; height: 5px; border-radius: var(--radius-pill); background: var(--border-strong)"></span>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; background: var(--sidebar); border-radius: var(--radius-md)">
+        <button onClick="{{asTask}}" style="height: 44px; border: 0; border-radius: var(--radius-sm); background: {{taskBg}}; color: var(--ink); font-size: 14px; font-weight: 600">Task</button>
+        <button onClick="{{asNote}}" style="height: 44px; border: 0; border-radius: var(--radius-sm); background: {{noteBg}}; color: var(--ink); font-size: 14px; font-weight: 600">Note</button>
+      </div>
+      <label for="m-cap" style="font-size: 13px; font-weight: 600; color: var(--ink-muted)">{{prompt}}</label>
+      <textarea id="m-cap" rows="3" value="{{draft}}" onChange="{{onDraft}}" placeholder="Jot it down before it slips away" style="box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius-md); font: inherit; font-size: 16px; line-height: 1.5; color: var(--ink); resize: none; outline: none"></textarea>
+      <div style="display: flex; gap: 8px; overflow-x: auto">
+        <sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+        <button onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="flex: none; height: 40px; padding: 0 14px; border-radius: var(--radius-pill); border: 1.5px solid {{c.ring}}; background: {{c.bg}}; color: {{c.ink}}; font-size: 13px; font-weight: 600">{{c.label}}</button>
+        </sc-for>
+      </div>
+      <button onClick="{{save}}" style="height: 52px; border: 0; border-radius: var(--radius-lg); background: var(--primary); color: var(--on-primary); font-size: 16px; font-weight: 600">{{saveLabel}}</button>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  palette() {
+    return {
+      Inbox: { bg: 'var(--inbox-bg)', ink: 'var(--inbox-ink)', dot: 'var(--border-strong)', label: 'Inbox' },
+      Website: { bg: 'var(--lavender-bg)', ink: 'var(--lavender-ink)', dot: 'var(--lavender-dot)', label: 'Website' },
+      Thesis: { bg: 'var(--mint-bg)', ink: 'var(--mint-ink)', dot: 'var(--mint-dot)', label: 'Thesis' },
+      Garden: { bg: 'var(--peach-bg)', ink: 'var(--peach-ink)', dot: 'var(--peach-dot)', label: 'Garden' },
+      Personal: { bg: 'var(--rose-bg)', ink: 'var(--rose-ink)', dot: 'var(--rose-dot)', label: 'Personal' }
+    };
+  }
+  tasks() {
+    return (this.state && this.state.tasks) || [
+      { id: 1, text: 'Draft homepage wireframe v2', project: 'Website', top: true, done: false },
+      { id: 2, text: 'Write the methods section intro', project: 'Thesis', top: true, done: false },
+      { id: 3, text: 'Call Maya about the launch date', project: 'Personal', top: true, done: false },
+      { id: 4, text: 'Order seed trays', project: 'Garden', top: false, done: true },
+      { id: 5, text: 'Review Sam’s notes on navigation', project: 'Website', top: false, done: false },
+      { id: 6, text: 'Book dentist appointment', project: 'Personal', top: false, done: false }
+    ];
+  }
+  save() {
+    const s = this.state || {};
+    const text = (s.draft || '').trim();
+    if (!text) { this.setState({ sheetOpen: false }); return; }
+    const project = s.project || 'Inbox';
+    const next = s.kind === 'note' ? this.tasks() : this.tasks().concat([{ id: Date.now(), text, project, top: false, done: false }]);
+    this.setState({ tasks: next, draft: '', sheetOpen: false });
+  }
+  renderVals() {
+    const s = this.state || {};
+    const P = this.palette();
+    const decorate = (t) => ({
+      ...t,
+      open: !t.done,
+      dot: P[t.project].dot,
+      toggle: () => this.setState({ tasks: this.tasks().map((x) => (x.id === t.id ? { ...x, done: !x.done } : x)) })
+    });
+    const tasks = this.tasks();
+    const kind = s.kind || 'task';
+    const project = s.project || 'Inbox';
+    return {
+      top: tasks.filter((t) => t.top).map(decorate),
+      rest: tasks.filter((t) => !t.top).map(decorate),
+      sheetOpen: !!s.sheetOpen,
+      openSheet: () => this.setState({ sheetOpen: true }),
+      closeSheet: () => this.setState({ sheetOpen: false }),
+      asTask: () => this.setState({ kind: 'task' }),
+      asNote: () => this.setState({ kind: 'note' }),
+      taskBg: kind === 'task' ? 'var(--surface)' : 'transparent',
+      noteBg: kind === 'note' ? 'var(--surface)' : 'transparent',
+      prompt: kind === 'task' ? 'What needs doing?' : 'What’s on your mind?',
+      saveLabel: kind === 'task' ? 'Add to Today' : 'Save note',
+      draft: s.draft || '',
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      chips: Object.keys(P).map((k) => ({
+        label: P[k].label,
+        on: project === k,
+        bg: P[k].bg,
+        ink: P[k].ink,
+        ring: project === k ? P[k].ink : P[k].bg,
+        pick: () => this.setState({ project: k })
+      })),
+      save: () => this.save()
+    };
+  }
+}
+</script>
+</body>
+</html>

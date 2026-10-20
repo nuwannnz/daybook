@@ -1,0 +1,19 @@
+<!-- @dsCard group="Forms" height=200 subtitle="Default and error" -->
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Text field — preview</title></head>
+<body>
+<div class="db-row" style="align-items: flex-start">
+  <div class="db-field" style="flex: 1 1 260px">
+    <label class="db-label" for="tf-email">Email</label>
+    <input class="db-input" id="tf-email" type="email" placeholder="you@example.com">
+    <p class="db-help">We’ll send sign-in links here.</p>
+  </div>
+  <div class="db-field" style="flex: 1 1 260px">
+    <label class="db-label" for="tf-pass">Password</label>
+    <input class="db-input" id="tf-pass" type="password" value="wrongpass1" aria-invalid="true" aria-describedby="tf-err">
+    <p class="db-help db-help--error" id="tf-err">That email and password don’t match.</p>
+  </div>
+</div>
+</body>
+</html>

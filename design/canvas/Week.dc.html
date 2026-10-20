@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daybook — This week</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/daybook/tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:var(--bg)}
+a{color:var(--accent)}a:hover{color:var(--ink)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</helmet>
+<div style="font-family: var(--font-sans); color: var(--ink); background: var(--bg); min-height: 100vh; display: flex; flex-wrap: wrap">
+
+<aside aria-label="Sidebar" style="flex: 1 1 248px; box-sizing: border-box; padding: 20px 14px; background: var(--sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 22px">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 4px 10px">
+    <span aria-hidden="true" style="width: 28px; height: 28px; border-radius: var(--radius-sm); background: var(--lavender-bg); color: var(--lavender-ink); display: grid; place-items: center; font-weight: 700; font-size: 15px">d</span>
+    <span style="font-weight: 700; font-size: 16px; letter-spacing: -0.01em">Daybook</span>
+  </div>
+  <button style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-md); color: var(--ink-muted); font-size: 14px; text-align: left">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+    <span style="flex: 1">Search or jump to…</span>
+    <kbd style="font-family: inherit; font-size: 12px; font-weight: 600; color: var(--ink-muted); background: var(--sidebar); border-radius: var(--radius-xs); padding: 2px 6px">⌘K</kbd>
+  </button>
+  <nav aria-label="Main" style="display: flex; flex-direction: column; gap: 2px">
+    <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-md); color: var(--ink-soft); font-size: 14px; font-weight: 500; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      <span style="flex: 1">Today</span>
+    </a>
+    <a href="Week.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-raised); color: var(--ink); font-size: 14px; font-weight: 600; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+      <span style="flex: 1">This week</span>
+    </a>
+    <a href="Notes.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-md); color: var(--ink-soft); font-size: 14px; font-weight: 500; text-decoration: none">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M14 3v5h5M9 13h7M9 17h5"></path></svg>
+      <span style="flex: 1">Notes</span>
+    </a>
+  </nav>
+  <div style="display: flex; flex-direction: column; gap: 2px">
+    <p style="margin: 0 0 6px; padding: 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted)">Projects</p>
+    <a href="Project.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-md); color: var(--ink-soft); font-size: 14px; font-weight: 500; text-decoration: none">
+      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 4px; background: var(--lavender-dot)"></span>
+      <span style="flex: 1">Website redesign</span>
+    </a>
+    <a href="Project.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-md); color: var(--ink-soft); font-size: 14px; font-weight: 500; text-decoration: none">
+      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 4px; background: var(--mint-dot)"></span>
+      <span style="flex: 1">Thesis draft</span>
+    </a>
+    <a href="Project.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border-radius: var(--radius-md); color: var(--ink-soft); font-size: 14px; font-weight: 500; text-decoration: none">
+      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 4px; background: var(--peach-dot)"></span>
+      <span style="flex: 1">Garden plan</span>
+    </a>
+    <button style="display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 0; background: transparent; border-radius: var(--radius-md); color: var(--ink-muted); font-size: 14px; font-weight: 500; text-align: left">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+      New project
+    </button>
+  </div>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 40px clamp(20px, 4vw, 56px) 64px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+
+  <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+    <div>
+      <p style="margin: 0 0 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-muted)">Week 43</p>
+      <h1 class="page-title" style="margin: 0">Oct 19 – 25</h1>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px">
+      <button aria-label="Previous week" style="width: 44px; height: 44px; border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-md); color: var(--ink-soft); display: grid; place-items: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </button>
+      <button style="height: 44px; padding: 0 16px; border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-md); color: var(--ink); font-size: 14px; font-weight: 600">This week</button>
+      <button aria-label="Next week" style="width: 44px; height: 44px; border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius-md); color: var(--ink-soft); display: grid; place-items: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <section aria-labelledby="goals-h" style="display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+      <h2 id="goals-h" class="section-heading" style="margin: 0">Goals this week</h2>
+      <span style="font-size: 13px; color: var(--ink-muted)">One per project keeps it honest</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+      <a href="Project.dc.html" style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: var(--radius-lg); background: var(--lavender-bg); color: var(--lavender-ink); text-decoration: none">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">Website redesign</span>
+        <span style="font-size: 16px; font-weight: 600; color: var(--ink)">Homepage wireframe signed off</span>
+        <span style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600">
+          <span aria-hidden="true" style="flex: 1; height: 6px; border-radius: var(--radius-pill); background: var(--surface); overflow: hidden"><span style="display: block; width: 50%; height: 6px; background: var(--lavender-dot)"></span></span>
+          2 of 4 steps
+        </span>
+      </a>
+      <a href="Project.dc.html" style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: var(--radius-lg); background: var(--mint-bg); color: var(--mint-ink); text-decoration: none">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">Thesis draft</span>
+        <span style="font-size: 16px; font-weight: 600; color: var(--ink)">Methods section, first draft</span>
+        <span style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600">
+          <span aria-hidden="true" style="flex: 1; height: 6px; border-radius: var(--radius-pill); background: var(--surface); overflow: hidden"><span style="display: block; width: 33%; height: 6px; background: var(--mint-dot)"></span></span>
+          1 of 3 steps
+        </span>
+      </a>
+      <a href="Project.dc.html" style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: var(--radius-lg); background: var(--peach-bg); color: var(--peach-ink); text-decoration: none">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase">Garden plan</span>
+        <span style="font-size: 16px; font-weight: 600; color: var(--ink)">Raised bed built and seeded</span>
+        <span style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600">
+          <span aria-hidden="true" style="flex: 1; height: 6px; border-radius: var(--radius-pill); background: var(--surface); overflow: hidden"><span style="display: block; width: 50%; height: 6px; background: var(--peach-dot)"></span></span>
+          1 of 2 steps
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section aria-labelledby="days-h" style="display: flex; flex-direction: column; gap: 12px">
+    <h2 id="days-h" class="section-heading" style="margin: 0">Plan</h2>
+    <div style="overflow-x: auto; padding-bottom: 6px">
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; min-width: 1000px">
+        <sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+        <div style="display: flex; flex-direction: column; gap: 8px; min-height: 340px; padding: 12px 10px; border-radius: var(--radius-lg); background: {{d.bg}}; border: 1.5px solid {{d.border}}">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 0 4px 4px">
+            <span style="font-size: 13px; font-weight: 700; color: {{d.headInk}}">{{d.name}}</span>
+            <span style="font-size: 13px; font-weight: 600; color: var(--ink-muted)">{{d.date}}</span>
+          </div>
+          <sc-for list="{{d.items}}" as="it" hint-placeholder-count="2">
+            <sc-if value="{{it.done}}" hint-placeholder-val="{{false}}">
+            <div style="padding: 8px 10px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); font-size: 13px; line-height: 1.35; color: var(--ink-done); text-decoration: line-through">{{it.text}}</div>
+            </sc-if>
+            <sc-if value="{{it.open}}" hint-placeholder-val="{{true}}">
+            <div style="padding: 8px 10px; border-radius: var(--radius-sm); background: {{it.bg}}; color: {{it.ink}}; font-size: 13px; font-weight: 500; line-height: 1.35">{{it.text}}</div>
+            </sc-if>
+          </sc-for>
+          <button aria-label="Add to {{d.name}}" style="margin-top: auto; min-height: 44px; border: 1.5px dashed var(--border-strong); background: transparent; border-radius: var(--radius-sm); color: var(--ink-muted); font-size: 13px; font-weight: 600">+ Add</button>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <section aria-labelledby="later-h" style="flex: 3 1 420px; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 6px">
+        <h2 id="later-h" class="section-heading" style="margin: 0">Not scheduled yet</h2>
+        <span style="font-size: 13px; color: var(--ink-muted)">{{laterCount}} waiting</span>
+      </div>
+      <sc-for list="{{later}}" as="l" hint-placeholder-count="3">
+      <div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 2px 4px; border-top: 1px solid var(--border)">
+        <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 4px; flex: none; background: {{l.dot}}"></span>
+        <span style="flex: 1; min-width: 0; font-size: 14px">{{l.text}}</span>
+        <button onClick="{{l.schedule}}" style="height: 44px; min-width: 44px; padding: 0 14px; border: 0; border-radius: var(--radius-sm); background: var(--sidebar); color: var(--ink-soft); font-size: 13px; font-weight: 600">Do today</button>
+      </div>
+      </sc-for>
+      <sc-if value="{{allPlanned}}" hint-placeholder-val="{{false}}">
+      <p style="margin: 0; padding: 14px 4px; font-size: 14px; color: var(--mint-ink); border-top: 1px solid var(--border)">Everything has a day. Nice.</p>
+      </sc-if>
+    </section>
+
+    <section aria-labelledby="review-h" style="flex: 2 1 300px; min-width: 0; background: var(--sky-bg); color: var(--sky-ink); border-radius: var(--radius-xl); padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 10px">
+      <h2 id="review-h" class="section-heading" style="margin: 0">Sunday review</h2>
+      <ol style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8">
+        <li>What moved forward this week?</li>
+        <li>What will I carry into next week?</li>
+        <li>One goal per project for week 44</li>
+      </ol>
+      <a href="Notes.dc.html" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: var(--radius-md); background: var(--surface); color: var(--sky-ink); font-size: 14px; font-weight: 600; text-decoration: none">Start review note</a>
+    </section>
+  </div>
+
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  palette() {
+    return {
+      Website: { bg: 'var(--lavender-bg)', ink: 'var(--lavender-ink)', dot: 'var(--lavender-dot)' },
+      Thesis: { bg: 'var(--mint-bg)', ink: 'var(--mint-ink)', dot: 'var(--mint-dot)' },
+      Garden: { bg: 'var(--peach-bg)', ink: 'var(--peach-ink)', dot: 'var(--peach-dot)' },
+      Personal: { bg: 'var(--rose-bg)', ink: 'var(--rose-ink)', dot: 'var(--rose-dot)' },
+      Review: { bg: 'var(--sky-bg)', ink: 'var(--sky-ink)', dot: 'var(--sky-dot)' }
+    };
+  }
+  baseDays() {
+    return [
+      { name: 'Mon', date: '19', items: [['Moodboard review', 'Website', true], ['Literature notes', 'Thesis', true], ['Gym', 'Personal', true]] },
+      { name: 'Tue', date: '20', today: true, items: [['Homepage wireframe v2', 'Website'], ['Methods intro', 'Thesis'], ['Call Maya', 'Personal'], ['Sow tomato seeds', 'Garden']] },
+      { name: 'Wed', date: '21', items: [['Share wireframe with Sam', 'Website'], ['Supervisor meeting 14:00', 'Thesis']] },
+      { name: 'Thu', date: '22', items: [['Methods: data section', 'Thesis'], ['Build raised bed', 'Garden']] },
+      { name: 'Fri', date: '23', items: [['Usability test prep', 'Website'], ['Dinner with Ana', 'Personal']] },
+      { name: 'Sat', date: '24', weekend: true, items: [['Visit garden centre', 'Garden']] },
+      { name: 'Sun', date: '25', weekend: true, items: [['Weekly review', 'Review']] }
+    ];
+  }
+  initialLater() {
+    return [
+      { id: 1, text: 'Pick a font pairing', project: 'Website' },
+      { id: 2, text: 'Email the ethics board', project: 'Thesis' },
+      { id: 3, text: 'Research compost bins', project: 'Garden' }
+    ];
+  }
+  renderVals() {
+    const s = this.state || {};
+    const P = this.palette();
+    const later = s.later || this.initialLater();
+    const moved = s.moved || [];
+    const days = this.baseDays().map((d) => {
+      const extra = d.today ? moved.map((m) => [m.text, m.project]) : [];
+      return {
+        name: d.name,
+        date: d.date,
+        bg: d.today ? 'var(--surface)' : d.weekend ? 'var(--sidebar)' : 'var(--surface)',
+        border: d.today ? 'var(--lavender-dot)' : 'var(--border)',
+        headInk: d.today ? 'var(--accent)' : 'var(--ink)',
+        items: d.items.concat(extra).map((i) => ({
+          text: i[0],
+          bg: P[i[1]].bg,
+          ink: P[i[1]].ink,
+          done: !!i[2],
+          open: !i[2]
+        }))
+      };
+    });
+    return {
+      days,
+      later: later.map((l) => ({
+        ...l,
+        dot: P[l.project].dot,
+        schedule: () => this.setState({
+          later: later.filter((x) => x.id !== l.id),
+          moved: moved.concat([l])
+        })
+      })),
+      laterCount: later.length,
+      allPlanned: later.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

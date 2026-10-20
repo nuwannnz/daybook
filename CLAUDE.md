@@ -38,6 +38,7 @@ Nx monorepo, strict TypeScript. Next.js static export (React, Redux Toolkit + RT
 - Put every new planning or documentation file under `docs/`, not the repo root.
 - Record significant technical choices as ADRs in `docs/decisions/` using the template there.
 - Keep the docs index in `docs/README.md` up to date when adding files.
+- Plan work as epic → story → task files in `docs/planning/epics/` using the `plan-epic` skill (`.claude/skills/plan-epic/`). Build from a story's task list, tick tasks as they land, and update story and epic status.
 - Use design tokens from `design/system/tokens.json`; do not hard-code colours.
 - Commit author: `nuwankarunarathna504@gmail.com`.
 

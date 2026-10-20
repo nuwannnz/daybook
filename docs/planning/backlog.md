@@ -2,6 +2,8 @@
 
 Ordered by [roadmap](roadmap.md) milestone. Every item starts with a failing test ([testing guide](../guides/testing.md)). IDs in brackets refer to the [PRD](../product/PRD.md).
 
+Before building, break items into [epics, stories and tasks](epics/README.md) with `/plan-epic` (for example `/plan-epic M1`). Each line links to its epic once one exists.
+
 ## M0 Foundations
 
 - [ ] Create the GitHub repository, push `main`, create `develop` as the default branch, protect both ([ADR 0014](../decisions/0014-branching-and-deployment-flow.md))

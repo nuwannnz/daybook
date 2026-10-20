@@ -8,6 +8,7 @@ All planning and documentation lives here.
 | Product | [product/glossary.md](product/glossary.md) | Product and technical terms |
 | Planning | [planning/roadmap.md](planning/roadmap.md) | Phases, gates and MVP milestones |
 | Planning | [planning/backlog.md](planning/backlog.md) | Work items by milestone |
+| Planning | [planning/epics/](planning/epics/README.md) | Epics, stories and TDD tasks (created with `/plan-epic`) |
 | Planning | [planning/open-questions.md](planning/open-questions.md) | Unresolved product and technical questions |
 | Architecture | [architecture/overview.md](architecture/overview.md) | Stack, system context, module map, key flows |
 | Architecture | [architecture/data-model.md](architecture/data-model.md) | DynamoDB keys, indexes, access patterns, invariants |

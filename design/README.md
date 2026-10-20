@@ -3,7 +3,7 @@
 Source files for the Daybook design canvas. The live, clickable canvas is here:
 https://claude.ai/artifact/VHiRsqmVbKtnzEJyDhr9SE
 
-The product spec lives in [../PRD.md](../PRD.md); its "Visual design system" section lists the colour tokens, type and spacing used below.
+The product spec lives in [../docs/product/PRD.md](../docs/product/PRD.md); its "Visual design system" section lists the colour tokens, type and spacing used below.
 
 ## Design system
 

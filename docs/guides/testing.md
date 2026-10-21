@@ -46,6 +46,51 @@ Each PRD acceptance line becomes at least one test. Examples:
 | WK-2: progress agrees with the project page                | Unit: both views use `projectProgress()`; e2e compares the two numbers                                       |
 | NOT-5: autosave, no Save button                            | e2e: type, reload, text is there; no button named Save exists                                                |
 
-## Commands
+## Fakes and builders
 
-Added once the workspace is scaffolded; see [development.md](development.md#commands).
+Both live in the `testing` entry point of the library that owns the type (`@daybook/api-application/testing`), so production code cannot import them by accident.
+
+In-memory fake of a port, implementing the same interface as the real adapter:
+
+```ts
+export class InMemoryTaskRepository implements TaskRepository {
+  private readonly tasks = new Map<TaskId, Task>();
+
+  save(task: Task): Promise<void> {
+    this.tasks.set(task.id, task);
+    return Promise.resolve();
+  }
+
+  findById(id: TaskId): Promise<Task | null> {
+    return Promise.resolve(this.tasks.get(id) ?? null);
+  }
+}
+```
+
+Builder with sensible defaults and fluent overrides:
+
+```ts
+export const aTask = () => new TaskBuilder();
+
+class TaskBuilder {
+  private props: TaskProps = { id: newId(), title: 'Draft brief', status: 'open' };
+
+  titled(title: string): this {
+    this.props = { ...this.props, title };
+    return this;
+  }
+
+  build(): Task {
+    return Task.create(this.props);
+  }
+}
+```
+
+## Running tests
+
+- Shared Vitest preset: `tools/vitest/preset.mts`. Each library's `vitest.config.mts` calls `createVitestConfig` with a coverage tier (`core` 90% for `type:domain` and `type:application`, `standard` 80% elsewhere) and an environment (`jsdom` for `type:ui` and `type:feature`).
+- Coverage runs with every `nx test`; a library below its threshold fails the target.
+- Integration specs are named `*.integration.spec.ts`, are excluded from `nx test`, and run with `nx integration <project>` (Testcontainers, needs Docker). The DynamoDB Local helper is `startDynamoDbLocal()` from `@daybook/api-infrastructure/testing`.
+- Playwright specs live in `apps/web-e2e` and `apps/api-e2e`; `expectNoAxeViolations(page)` is in `apps/web-e2e/src/support/axe.ts`. `BASE_URL` and `API_URL` select the target.
+- The `sample*.spec.*` files prove each level works and are deleted when real tests of that level exist.
+- Commands: [development.md](development.md#commands).

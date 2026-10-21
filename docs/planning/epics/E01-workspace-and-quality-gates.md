@@ -1,6 +1,6 @@
 # E01. Workspace and quality gates
 
-- Status: Ready
+- Status: In progress
 - Milestone: M0 Foundations
 - PRD: none (platform)
 - Depends on: none
@@ -40,7 +40,8 @@ Out:
 
 ### E01-S01. Repository, branches and Nx workspace with enforced layers
 
-- Status: Todo
+- Status: In progress
+- Waiting on the owner: GitHub repository, default branch and branch protection
 
 So that every library has a place and a tag, and a wrong import between layers fails before review.
 
@@ -61,16 +62,16 @@ So that every library has a place and a tag, and a wrong import between layers f
 **Tasks**
 
 - [ ] Owner creates the GitHub repository; push `main`, create `develop`, set it as default, protect both
-- [ ] Decide npm or pnpm (Q15); record in ADR 0001 and close Q15
-- [ ] Create the Nx workspace with `.nvmrc`, strict `tsconfig.base.json` and path aliases (`@daybook/*`)
-- [ ] Generate every app and library from the [module map](../../architecture/overview.md#module-map) with its tags
-- [ ] Configure `@nx/enforce-module-boundaries` depConstraints and `bannedExternalImports` per ADR 0011 and ADR 0013
-- [ ] Boundary fixture script in `tools/lint-fixtures/` with one case per forbidden edge
-- [ ] Update `docs/guides/development.md` commands from planned to real
+- [x] Decide npm or pnpm (Q15); record in ADR 0001 and close Q15
+- [x] Create the Nx workspace with `.nvmrc`, strict `tsconfig.base.json` and path aliases (`@daybook/*`)
+- [x] Generate every app and library from the [module map](../../architecture/overview.md#module-map) with its tags
+- [x] Configure `@nx/enforce-module-boundaries` depConstraints and `bannedExternalImports` per ADR 0011 and ADR 0013
+- [x] Boundary fixture script in `tools/lint-fixtures/` with one case per forbidden edge
+- [x] Update `docs/guides/development.md` commands from planned to real
 
 ### E01-S02. Lint, format and commit hooks
 
-- Status: Todo
+- Status: Done
 
 So that style, naming and commit messages are fixed automatically or rejected at commit time.
 
@@ -89,16 +90,16 @@ So that style, naming and commit messages are fixed automatically or rejected at
 
 **Tasks**
 
-- [ ] Root ESLint flat config: `typescript-eslint` `strictTypeChecked` and `stylisticTypeChecked`, `id-length`, `max-lines` warning, `eslint-config-prettier`
-- [ ] Web overrides: `react`, `react-hooks`, `jsx-a11y`, `@next/eslint-plugin-next`; test overrides: `vitest`, `testing-library`, `playwright`, non-null allowed
-- [ ] Prettier config and `.prettierignore` (generated files, `design/canvas`)
-- [ ] Husky with lint-staged (`prettier --write`, `eslint --fix`) and commitlint (`@commitlint/config-conventional`, scopes from Nx projects)
-- [ ] Format the existing repo in one `style:` commit
-- [ ] Add fixture cases and the commitlint test to `tools/`
+- [x] Root ESLint flat config: `typescript-eslint` `strictTypeChecked` and `stylisticTypeChecked`, `id-length`, `max-lines` warning, `eslint-config-prettier`
+- [x] Web overrides: `react`, `react-hooks`, `jsx-a11y`, `@next/eslint-plugin-next`; test overrides: `vitest`, `testing-library`, `playwright`, non-null allowed
+- [x] Prettier config and `.prettierignore` (generated files, `design/canvas`)
+- [x] Husky with lint-staged (`prettier --write`, `eslint --fix`) and commitlint (`@commitlint/config-conventional`, scopes from Nx projects)
+- [x] Format the existing repo in one `style:` commit
+- [x] Add fixture cases and the commitlint test to `tools/`
 
 ### E01-S03. Test tooling and coverage gates
 
-- Status: Todo
+- Status: Done
 
 So that every project can be driven test-first at the right level from its first line of code.
 
@@ -116,15 +117,15 @@ So that every project can be driven test-first at the right level from its first
 
 **Tasks**
 
-- [ ] Shared Vitest preset in `tools/vitest/` with coverage thresholds by tag
-- [ ] `jsdom` environment and Testing Library setup for `type:ui` and `type:feature` projects
-- [ ] `integration` target and a Testcontainers DynamoDB Local helper in a `testing` entry point of `libs/api/infrastructure`
-- [ ] Playwright config in `apps/web-e2e` and `apps/api-e2e`, with axe helper and a `baseURL` from env
-- [ ] Builder and in-memory fake conventions documented in `docs/guides/testing.md` with one example each
+- [x] Shared Vitest preset in `tools/vitest/` with coverage thresholds by tag
+- [x] `jsdom` environment and Testing Library setup for `type:ui` and `type:feature` projects
+- [x] `integration` target and a Testcontainers DynamoDB Local helper in a `testing` entry point of `libs/api/infrastructure`
+- [x] Playwright config in `apps/web-e2e` and `apps/api-e2e`, with axe helper and a `baseURL` from env
+- [x] Builder and in-memory fake conventions documented in `docs/guides/testing.md` with one example each
 
 ### E01-S04. Release versioning from commits
 
-- Status: Todo
+- Status: Done
 
 So that the next product version can be computed from Conventional Commits without anyone editing a version number.
 
@@ -141,7 +142,7 @@ So that the next product version can be computed from Conventional Commits witho
 
 **Tasks**
 
-- [ ] `nx.json` release config: one fixed group, `currentVersionResolver: git-tag`, conventional commits, no git commit, no publish
-- [ ] `tools/version.ts` wrapping the dry-run, with `--prerelease` for dev builds
-- [ ] Script test with a temporary repository
-- [ ] Note the commands in `docs/guides/development.md`
+- [x] Version rules in `tools/version/version.mts`: git tags as source of truth, Conventional Commits, no commit, no tag, no publish. `nx release version` was tried and dropped: it needs a package manifest per released project and a pre-existing tag, which this workspace does not have
+- [x] `tools/version.ts` wrapping the dry-run, with `--prerelease` for dev builds
+- [x] Script test with a temporary repository
+- [x] Note the commands in `docs/guides/development.md`

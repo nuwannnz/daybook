@@ -44,4 +44,11 @@ Nx monorepo, strict TypeScript. Next.js static export (React, Redux Toolkit + RT
 
 ## Commands
 
-None yet. The planned Nx commands are in [docs/guides/development.md](docs/guides/development.md#commands); move them here once they work.
+Full list in [docs/guides/development.md](docs/guides/development.md#commands). Docker, serve and deploy commands are still planned.
+
+- `npx nx affected -t lint typecheck test`: the pre-push gate (warnings fail, coverage thresholds enforced)
+- `npx nx integration api-infrastructure`: Testcontainers integration tests (needs Docker)
+- `npx nx e2e web-e2e`: Playwright
+- `npx nx format:write`, `npx nx format:check`
+- `npm run lint:fixtures`, `npm run test:tools`: layer-rule and tooling tests
+- `node tools/version/version.mts [--prerelease]`: next version from Conventional Commits (dry run)

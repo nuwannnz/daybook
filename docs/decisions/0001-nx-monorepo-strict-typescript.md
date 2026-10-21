@@ -9,7 +9,8 @@ Daybook has a web app, an API, shared domain rules (Top 3 cap, day boundary, tag
 
 ## Decision
 
-- One Nx workspace holds every app and library, with npm workspaces (pnpm is acceptable if chosen at scaffold time; record it here).
+- One Nx workspace holds every app and library, with npm workspaces. npm was chosen at scaffold time (Q15): it ships with Node 24, needs no extra install step in CI or Docker, and Nx works the same with either.
+- `typescript` is pinned to 6.0.x until `typescript-eslint` supports 7.
 - TypeScript everywhere, including infrastructure, with `strict: true` plus `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `noImplicitOverride` and `noFallthroughCasesInSwitch`.
 - `any` is banned by lint (`@typescript-eslint/no-explicit-any: error`); unknown input is parsed with zod at the edges.
 - Nx project tags and `@nx/enforce-module-boundaries` enforce the layering in [architecture/overview.md](../architecture/overview.md#module-map).

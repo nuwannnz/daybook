@@ -75,22 +75,28 @@ Set in `compose.yaml`; override in a git-ignored `.env`.
 
 ## Commands
 
-_Planned._ These will be wired as Nx targets and listed in `CLAUDE.md`.
+Rows marked _planned_ land with later M0 epics.
 
-| Task                                              | Command                                       |
-| ------------------------------------------------- | --------------------------------------------- |
-| Install                                           | `npm ci`                                      |
-| Run everything in Docker                          | `docker compose up`                           |
-| Run API on the host (needs DynamoDB from Compose) | `npx nx serve api`                            |
-| Run web on the host (proxies `/api`)              | `npx nx dev web`                              |
-| Unit and component tests                          | `npx nx affected -t test`                     |
-| Integration tests (Testcontainers)                | `npx nx affected -t integration`              |
-| E2E tests against the Compose stack               | `npx nx e2e web-e2e`                          |
-| Lint and type-check                               | `npx nx affected -t lint typecheck`           |
-| Format, check formatting                          | `npx nx format:write`, `npx nx format:check`  |
-| Build everything                                  | `npx nx run-many -t build`                    |
-| Synthesize infra                                  | `npx nx run infra:synth --configuration=dev`  |
-| Deploy dev (normally CI)                          | `npx nx run infra:deploy --configuration=dev` |
+| Task                                                         | Command                                                        |
+| ------------------------------------------------------------ | -------------------------------------------------------------- |
+| Install                                                      | `npm ci`                                                       |
+| Run everything in Docker                                     | `docker compose up` (_planned_, E02)                           |
+| Run API on the host                                          | `npx nx serve api` (_planned_, E02)                            |
+| Run web on the host                                          | `npx nx dev web`                                               |
+| Unit and component tests, with coverage gates                | `npx nx affected -t test`                                      |
+| Integration tests (Testcontainers, needs Docker)             | `npx nx integration api-infrastructure`                        |
+| E2E tests (Playwright, against `BASE_URL`)                   | `npx nx e2e web-e2e`                                           |
+| Lint and type-check, warnings fail                           | `npx nx affected -t lint typecheck`                            |
+| Format, check formatting                                     | `npx nx format:write`, `npx nx format:check`                   |
+| Layer-rule fixtures (each forbidden import must fail lint)   | `npm run lint:fixtures`                                        |
+| Tooling tests (commitlint, version script)                   | `npm run test:tools`                                           |
+| Next release version from commits (dry run, changes nothing) | `node tools/version/version.mts`                               |
+| Next dev build version (`X.Y.Z-dev.{shortSha}`)              | `node tools/version/version.mts --prerelease`                  |
+| Build everything                                             | `npx nx run-many -t build`                                     |
+| Synthesize infra                                             | `npx nx run infra:synth --configuration=dev` (_planned_, E03)  |
+| Deploy dev (normally CI)                                     | `npx nx run infra:deploy --configuration=dev` (_planned_, E03) |
+
+Playwright browsers are installed once with `npx playwright install chromium`. Git hooks (Husky) are installed by `npm ci` through the `prepare` script: commits run lint-staged and commitlint.
 
 ## Branches and environments
 

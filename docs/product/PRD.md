@@ -2,6 +2,8 @@
 
 Oct 20, 2026 · Nuwan K · Status: Draft
 
+Revised Oct 20, 2026: the MVP is online-first and full offline operation moves to v1 ([ADR 0007](../decisions/0007-online-first-mvp-with-redux.md)); note bodies are Yjs documents ([ADR 0006](../decisions/0006-notes-as-yjs-documents.md)).
+
 Live version: [Daybook — Product Requirements](https://claude.ai/code/artifact/aa5abdb6-2db2-4e63-997e-958275ed5661) · Design: [Daybook design canvas](https://claude.ai/artifact/VHiRsqmVbKtnzEJyDhr9SE)
 
 ## Summary
@@ -268,7 +270,7 @@ Six entities cover v1; Task is the hub, and Day and Week are derived views rathe
 | Project | id, name, goal, colour, targetDate, status (active, archived), createdAt | Has many Milestones, Tasks, Notes; has one WeeklyGoal per week |
 | Milestone | id, projectId, title, startDate, endDate, order, status (done, active, next) | Belongs to Project; has many Tasks |
 | Task | id, title, projectId?, milestoneId?, scheduledDate?, timeBlock {start, end}?, estimateMin, isTop3, order, doneAt?, sourceNoteId?, createdAt | Belongs to Project (or Inbox when null), optionally a Milestone and a source Note |
-| Note | id, title, body (block JSON), kind (daily, project, idea), projectId?, date?, pinned, updatedAt | Belongs to a Project or a Day; links to other Notes, Days, Projects |
+| Note | id, title, body (Yjs document with a block JSON snapshot), kind (daily, project, idea), projectId?, date?, pinned, updatedAt | Belongs to a Project or a Day; links to other Notes, Days, Projects |
 | WeeklyGoal | id, projectId, isoWeek, title | Belongs to Project; progress = linked Tasks done ÷ total |
 | CarryOverDecision | id, date, taskIds, action (brought, dismissed) | Records each day's carry-over choice so the banner shows once |
 
@@ -282,14 +284,14 @@ Six entities cover v1; Task is the hub, and Day and Week are derived views rathe
 
 ## Non-functional requirements
 
-Daybook must feel instant and work offline; speed is part of the minimal feel, not a separate feature.
+Daybook must feel instant, and from v1 work offline; speed is part of the minimal feel, not a separate feature.
 
 | Area | Requirement |
 | --- | --- |
 | Performance | Cold start to interactive Today ≤ 1.5 s on a mid-range laptop and ≤ 2 s on a mid-range phone. Any view switch ≤ 100 ms. Typing latency < 16 ms. |
-| Offline | All features work offline against a local store; changes sync when the connection returns. |
-| Sync | Changes reach other signed-in devices within 5 s when online. Conflicts merge per field for tasks and per block for notes; the losing edit is kept in note history. |
-| Durability | No more than 1 s of typing lost on crash; local store backed up to the server; account export to Markdown + JSON at any time. |
+| Offline | MVP: online-first with optimistic updates; while offline, writes pause behind a quiet banner and note typing is buffered locally. v1 (P1): all features work offline against a local store, and changes sync when the connection returns. |
+| Sync | Changes reach other signed-in devices within 5 s when online. Tasks merge per field (last writer wins); notes merge as CRDT documents, so concurrent edits are kept rather than overwritten. |
+| Durability | No more than 1 s of typing lost on crash; unsent note edits are buffered on the device until the server confirms; account export to Markdown + JSON at any time. |
 | Accessibility | WCAG 2.1 AA: 4.5:1 text contrast, 44 × 44 px touch targets, full keyboard operation, visible focus rings, screen-reader labels on all icon buttons, reduced-motion support. |
 | Privacy and security | Data encrypted in transit (TLS 1.2+) and at rest. No third-party ad or tracking SDKs. Analytics events carry no note or task content. Calendar access is read-only and revocable. |
 | Platforms | Web app (latest two versions of Chrome, Safari, Firefox, Edge) and installable desktop PWA at launch; iOS and Android apps in v1.1. |
@@ -314,13 +316,13 @@ The north-star metric is **weekly planned days**: the number of days per week on
 
 ## Release plan
 
-Ship a private-beta MVP with every P0 requirement, launch publicly once sync and accessibility are proven, then add native mobile apps and imports.
+Ship an online-first private-beta MVP with every P0 requirement, launch publicly once offline sync and accessibility are proven, then add native mobile apps and imports.
 
 ```mermaid
 flowchart LR
-  MVP["MVP · Private beta · all P0<br/>Capture and tags<br/>Today: Top 3, tasks<br/>Carry-over banner<br/>Week board and tray<br/>Projects, milestones<br/>Notes editor<br/>Offline and sync<br/>Responsive web app"]
-  G1{"Gate 1<br/>Sync loses no data;<br/>testers use it daily"}
-  V1["v1 · Public launch · all P1<br/>Schedule, calendar<br/>Natural-language dates<br/>Weekly review<br/>Pinned decisions<br/>Note links and [[ ]]<br/>Shortcuts, dark mode<br/>Desktop PWA"]
+  MVP["MVP · Private beta · all P0<br/>Capture and tags<br/>Today: Top 3, tasks<br/>Carry-over banner<br/>Week board and tray<br/>Projects, milestones<br/>Notes editor<br/>Online sync across devices<br/>Responsive web app"]
+  G1{"Gate 1<br/>No data lost online;<br/>testers use it daily"}
+  V1["v1 · Public launch · all P1<br/>Offline mode and sync<br/>Schedule, calendar<br/>Natural-language dates<br/>Weekly review<br/>Pinned decisions<br/>Note links and [[ ]]<br/>Shortcuts, dark mode<br/>Desktop PWA"]
   G2{"Gate 2<br/>AA audit clean;<br/>retention on target"}
   V11["v1.1 · Mobile and imports<br/>iOS and Android apps<br/>Native capture sheet<br/>To-do app imports"]
   G3{"Gate 3<br/>Mobile matches web<br/>for capture and Today"}
@@ -386,13 +388,13 @@ The biggest risk is that Daybook becomes one more place to check; every mitigati
 | Users keep their old to-do app and Daybook becomes a second inbox | Low retention | Import from Todoist, Things and Apple Reminders in v1.1; fast capture on every surface |
 | Planning feels like homework | Weekly plan adoption stays low | Weekly plan is optional; goals take one line; the review is three prompts, not a form |
 | Too few project colours for heavy users | Colour stops meaning project | Six pastels plus dot shapes; archive prompt for stalled projects |
-| Offline sync conflicts corrupt notes | Lost trust | Block-level merge, note history, sync built and tested before any other P1 work |
+| Offline sync conflicts corrupt notes | Lost trust | CRDT notes (Yjs) from the MVP, note history, offline sync built and tested before any other P1 work |
 | Pastel palette fails contrast in dark mode | Accessibility regression | Separate dark tokens, automated contrast checks in CI |
 
 **Dependencies**
 
 - Google and Microsoft calendar APIs for read-only events (TOD-6).
-- A sync engine with offline-first local storage (build vs. adopt decision needed).
+- Offline local storage and a command outbox for v1, built in-house on the MVP's command objects ([ADR 0007](../decisions/0007-online-first-mvp-with-redux.md)).
 - Plus Jakarta Sans licence (SIL Open Font License) and self-hosting.
 
 **Open questions**

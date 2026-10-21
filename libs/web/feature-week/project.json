@@ -1,0 +1,20 @@
+{
+  "name": "web-feature-week",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/feature-week/src",
+  "projectType": "library",
+  "tags": ["scope:web", "type:feature"],
+  "// targets": "to see all targets run: nx show project web-feature-week --web",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --noEmit -p libs/web/feature-week/tsconfig.lib.json",
+          "tsc --noEmit -p libs/web/feature-week/tsconfig.spec.json"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

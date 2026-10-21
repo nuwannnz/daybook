@@ -1,0 +1,20 @@
+{
+  "name": "web-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/data-access/src",
+  "projectType": "library",
+  "tags": ["scope:web", "type:data-access"],
+  "// targets": "to see all targets run: nx show project web-data-access --web",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --noEmit -p libs/web/data-access/tsconfig.lib.json",
+          "tsc --noEmit -p libs/web/data-access/tsconfig.spec.json"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

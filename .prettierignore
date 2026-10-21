@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.nx
+.next
+cdk.out
+package-lock.json
+design/canvas
+**/next-env.d.ts
+design/**/*.html
+test-results
+playwright-report

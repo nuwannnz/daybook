@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["es2023", "dom"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "paths": {
+      "@daybook/shared-domain": ["./libs/shared/domain/src/index.ts"],
+      "@daybook/shared-contracts": ["./libs/shared/contracts/src/index.ts"],
+      "@daybook/shared-observability": ["./libs/shared/observability/src/index.ts"],
+      "@daybook/api-application": ["./libs/api/application/src/index.ts"],
+      "@daybook/api-infrastructure": ["./libs/api/infrastructure/src/index.ts"],
+      "@daybook/web-data-access": ["./libs/web/data-access/src/index.ts"],
+      "@daybook/web-feature-shell": ["./libs/web/feature-shell/src/index.ts"],
+      "@daybook/web-feature-auth": ["./libs/web/feature-auth/src/index.ts"],
+      "@daybook/web-feature-capture": ["./libs/web/feature-capture/src/index.ts"],
+      "@daybook/web-feature-today": ["./libs/web/feature-today/src/index.ts"],
+      "@daybook/web-feature-week": ["./libs/web/feature-week/src/index.ts"],
+      "@daybook/web-feature-projects": ["./libs/web/feature-projects/src/index.ts"],
+      "@daybook/web-feature-notes": ["./libs/web/feature-notes/src/index.ts"],
+      "@daybook/web-feature-search": ["./libs/web/feature-search/src/index.ts"],
+      "@daybook/web-editor": ["./libs/web/editor/src/index.ts"],
+      "@daybook/ui": ["./libs/ui/src/index.ts"],
+      "@daybook/api-infrastructure/testing": ["./libs/api/infrastructure/src/testing/index.ts"]
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "rootDir": ".",
+    "jsx": "react-jsx"
+  },
+  "exclude": ["node_modules", "dist"]
+}

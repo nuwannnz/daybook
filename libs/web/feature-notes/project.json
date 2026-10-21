@@ -1,0 +1,20 @@
+{
+  "name": "web-feature-notes",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/feature-notes/src",
+  "projectType": "library",
+  "tags": ["scope:web", "type:feature"],
+  "// targets": "to see all targets run: nx show project web-feature-notes --web",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --noEmit -p libs/web/feature-notes/tsconfig.lib.json",
+          "tsc --noEmit -p libs/web/feature-notes/tsconfig.spec.json"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

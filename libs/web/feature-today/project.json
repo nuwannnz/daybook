@@ -1,0 +1,20 @@
+{
+  "name": "web-feature-today",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/feature-today/src",
+  "projectType": "library",
+  "tags": ["scope:web", "type:feature"],
+  "// targets": "to see all targets run: nx show project web-feature-today --web",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --noEmit -p libs/web/feature-today/tsconfig.lib.json",
+          "tsc --noEmit -p libs/web/feature-today/tsconfig.spec.json"
+        ],
+        "parallel": false
+      }
+    }
+  }
+}

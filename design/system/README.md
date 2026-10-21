@@ -6,13 +6,13 @@ Daybook is a minimal note-taking app for notes, daily plans, weekly plans and lo
 
 Short, warm and specific. Write what the person will see happen, in their words.
 
-| Do | Don't |
-| --- | --- |
-| Bring to today | Migrate tasks |
-| Everything has a day. Nice. | No items |
+| Do                                                                      | Don't                       |
+| ----------------------------------------------------------------------- | --------------------------- |
+| Bring to today                                                          | Migrate tasks               |
+| Everything has a day. Nice.                                             | No items                    |
 | That email and password don’t match. Try again, or reset your password. | Authentication failed (401) |
-| Jot it down before it slips away | Enter text here |
-| 3 of 7 done | 42.8% complete |
+| Jot it down before it slips away                                        | Enter text here             |
+| 3 of 7 done                                                             | 42.8% complete              |
 
 - Sentence case everywhere, including buttons. Uppercase only for eyebrow labels (`label` style).
 - No exclamation marks, no emoji, no apologies in errors. Errors say what happened and how to fix it.

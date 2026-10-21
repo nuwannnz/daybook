@@ -1,6 +1,6 @@
 # Development guide
 
-How to work on Daybook locally. The workspace is not scaffolded yet; commands marked *planned* become real when the M0 backlog items land.
+How to work on Daybook locally. The workspace is not scaffolded yet; commands marked _planned_ become real when the M0 backlog items land.
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Module rules and tags: [architecture overview](../architecture/overview.md#modul
 
 ## Run the whole app with Docker
 
-*Planned* ([ADR 0015](../decisions/0015-local-stack-with-docker-compose.md)).
+_Planned_ ([ADR 0015](../decisions/0015-local-stack-with-docker-compose.md)).
 
 ```sh
 docker compose up
@@ -48,12 +48,12 @@ docker compose up
 
 Open `http://localhost:8080`, sign up with any email, and use the app. Nothing touches AWS.
 
-| URL | Service |
-| --- | --- |
+| URL                     | Service                                                                       |
+| ----------------------- | ----------------------------------------------------------------------------- |
 | `http://localhost:8080` | The app through the Caddy proxy (`/api/*` to the API, everything else to web) |
-| `http://localhost:3333` | API directly |
-| `http://localhost:8000` | DynamoDB Local |
-| `http://localhost:8001` | DynamoDB admin UI (`docker compose --profile tools up`) |
+| `http://localhost:3333` | API directly                                                                  |
+| `http://localhost:8000` | DynamoDB Local                                                                |
+| `http://localhost:8001` | DynamoDB admin UI (`docker compose --profile tools up`)                       |
 
 - **dev mode** (default): source is bind-mounted; the API restarts on change and Next.js hot-reloads.
 - **prod-like mode**: `docker compose -f compose.yaml -f compose.prodlike.yaml up --build` runs the production API bundle and serves the static export through Caddy, the same shape as CloudFront. CI runs e2e against this.
@@ -64,43 +64,43 @@ Open `http://localhost:8080`, sign up with any email, and use the app. Nothing t
 
 Set in `compose.yaml`; override in a git-ignored `.env`.
 
-| Variable | Local default | Meaning |
-| --- | --- | --- |
-| `ENV` | `local` | `local`, `dev` or `prod` |
-| `AUTH_MODE` | `local` | `local` (dev JWT signer) or `cognito`; `local` is refused when `ENV=prod` |
-| `TABLE_NAME` | `daybook-local` | DynamoDB table |
-| `DYNAMODB_ENDPOINT` | `http://dynamodb:8000` | Unset in AWS |
-| `COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID` | unset | Needed only with `AUTH_MODE=cognito` (use the dev pool) |
-| `LOG_LEVEL` | `debug` | pino level; logs are pretty-printed locally |
+| Variable                                    | Local default          | Meaning                                                                   |
+| ------------------------------------------- | ---------------------- | ------------------------------------------------------------------------- |
+| `ENV`                                       | `local`                | `local`, `dev` or `prod`                                                  |
+| `AUTH_MODE`                                 | `local`                | `local` (dev JWT signer) or `cognito`; `local` is refused when `ENV=prod` |
+| `TABLE_NAME`                                | `daybook-local`        | DynamoDB table                                                            |
+| `DYNAMODB_ENDPOINT`                         | `http://dynamodb:8000` | Unset in AWS                                                              |
+| `COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID` | unset                  | Needed only with `AUTH_MODE=cognito` (use the dev pool)                   |
+| `LOG_LEVEL`                                 | `debug`                | pino level; logs are pretty-printed locally                               |
 
 ## Commands
 
-*Planned.* These will be wired as Nx targets and listed in `CLAUDE.md`.
+_Planned._ These will be wired as Nx targets and listed in `CLAUDE.md`.
 
-| Task | Command |
-| --- | --- |
-| Install | `npm ci` |
-| Run everything in Docker | `docker compose up` |
-| Run API on the host (needs DynamoDB from Compose) | `npx nx serve api` |
-| Run web on the host (proxies `/api`) | `npx nx dev web` |
-| Unit and component tests | `npx nx affected -t test` |
-| Integration tests (Testcontainers) | `npx nx affected -t integration` |
-| E2E tests against the Compose stack | `npx nx e2e web-e2e` |
-| Lint and type-check | `npx nx affected -t lint typecheck` |
-| Format, check formatting | `npx nx format:write`, `npx nx format:check` |
-| Build everything | `npx nx run-many -t build` |
-| Synthesize infra | `npx nx run infra:synth --configuration=dev` |
-| Deploy dev (normally CI) | `npx nx run infra:deploy --configuration=dev` |
+| Task                                              | Command                                       |
+| ------------------------------------------------- | --------------------------------------------- |
+| Install                                           | `npm ci`                                      |
+| Run everything in Docker                          | `docker compose up`                           |
+| Run API on the host (needs DynamoDB from Compose) | `npx nx serve api`                            |
+| Run web on the host (proxies `/api`)              | `npx nx dev web`                              |
+| Unit and component tests                          | `npx nx affected -t test`                     |
+| Integration tests (Testcontainers)                | `npx nx affected -t integration`              |
+| E2E tests against the Compose stack               | `npx nx e2e web-e2e`                          |
+| Lint and type-check                               | `npx nx affected -t lint typecheck`           |
+| Format, check formatting                          | `npx nx format:write`, `npx nx format:check`  |
+| Build everything                                  | `npx nx run-many -t build`                    |
+| Synthesize infra                                  | `npx nx run infra:synth --configuration=dev`  |
+| Deploy dev (normally CI)                          | `npx nx run infra:deploy --configuration=dev` |
 
 ## Branches and environments
 
 [ADR 0014](../decisions/0014-branching-and-deployment-flow.md):
 
-| Branch | Environment |
-| --- | --- |
-| feature branches | your machine (Docker) |
-| `develop` | dev, on every merge |
-| `main` | prod, on every merge, after manual approval |
+| Branch           | Environment                                 |
+| ---------------- | ------------------------------------------- |
+| feature branches | your machine (Docker)                       |
+| `develop`        | dev, on every merge                         |
+| `main`           | prod, on every merge, after manual approval |
 
 ## Workflow
 

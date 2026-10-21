@@ -11,14 +11,14 @@ The codebase must be modular, loosely coupled and easy to swap: the API runtime,
 
 Both the API and the web app follow the same layers, enforced by Nx tags:
 
-| Layer | Holds | May depend on |
-| --- | --- | --- |
-| `domain` | Entities, value objects, pure rules (Top 3 cap, day boundary, tag and date parsing, progress) | nothing |
-| `contracts` | zod schemas and DTO types shared by web and API | `domain` |
-| `application` | Commands, queries and their handlers; ports (repository, clock, id generator, auth, search) | `domain`, `contracts` |
-| `infrastructure` | Adapters for ports: DynamoDB repositories, Cognito, Yjs store, logger | `application`, `domain` |
-| `interface` | Fastify routes and plugins, inside `apps/api`; RTK Query endpoints, facades and feature containers (web) | `application`, `contracts` |
-| `ui` | Presentational React components, design tokens | nothing outside `ui` |
+| Layer            | Holds                                                                                                    | May depend on              |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `domain`         | Entities, value objects, pure rules (Top 3 cap, day boundary, tag and date parsing, progress)            | nothing                    |
+| `contracts`      | zod schemas and DTO types shared by web and API                                                          | `domain`                   |
+| `application`    | Commands, queries and their handlers; ports (repository, clock, id generator, auth, search)              | `domain`, `contracts`      |
+| `infrastructure` | Adapters for ports: DynamoDB repositories, Cognito, Yjs store, logger                                    | `application`, `domain`    |
+| `interface`      | Fastify routes and plugins, inside `apps/api`; RTK Query endpoints, facades and feature containers (web) | `application`, `contracts` |
+| `ui`             | Presentational React components, design tokens                                                           | nothing outside `ui`       |
 
 Patterns used where they fit:
 

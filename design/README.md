@@ -13,17 +13,17 @@ Every artboard loads `canvas/ds/daybook/tokens.css` (built from `tokens.json`) a
 
 ## Screens
 
-| File | Screen | Size |
-| --- | --- | --- |
-| `canvas/Main.dc.html` | Today — daily plan | Page, 1440 wide |
-| `canvas/Week.dc.html` | This week — weekly plan | Page, 1440 wide |
-| `canvas/Project.dc.html` | Project — milestones, tasks, notes | Page, 1440 wide |
-| `canvas/Notes.dc.html` | Notes — list and editor | Page, 1440 wide |
-| `canvas/Mobile.dc.html` | Mobile — Today and capture sheet | 390 × 844 |
-| `canvas/SignIn.dc.html` | Auth — Sign in (tweak: default / error / loading) | Page, 1440 wide |
-| `canvas/SignUp.dc.html` | Auth — Create account, live password strength | Page, 1440 wide |
-| `canvas/Reset.dc.html` | Auth — Reset password: request, sent, new password, done | Page, 1440 wide |
-| `canvas/MobileSignIn.dc.html` | Auth — Mobile sign in | 390 × 844 |
+| File                          | Screen                                                   | Size            |
+| ----------------------------- | -------------------------------------------------------- | --------------- |
+| `canvas/Main.dc.html`         | Today — daily plan                                       | Page, 1440 wide |
+| `canvas/Week.dc.html`         | This week — weekly plan                                  | Page, 1440 wide |
+| `canvas/Project.dc.html`      | Project — milestones, tasks, notes                       | Page, 1440 wide |
+| `canvas/Notes.dc.html`        | Notes — list and editor                                  | Page, 1440 wide |
+| `canvas/Mobile.dc.html`       | Mobile — Today and capture sheet                         | 390 × 844       |
+| `canvas/SignIn.dc.html`       | Auth — Sign in (tweak: default / error / loading)        | Page, 1440 wide |
+| `canvas/SignUp.dc.html`       | Auth — Create account, live password strength            | Page, 1440 wide |
+| `canvas/Reset.dc.html`        | Auth — Reset password: request, sent, new password, done | Page, 1440 wide |
+| `canvas/MobileSignIn.dc.html` | Auth — Mobile sign in                                    | 390 × 844       |
 
 `canvas/canvas.json` holds the layout: where each artboard sits on the canvas, its title and size.
 

@@ -12,14 +12,14 @@ The whole app must run locally with Docker and Docker Compose, without an AWS ac
 - `compose.yaml` at the repo root runs the full app at `http://localhost:8080`. The `docker/` folder holds Dockerfiles and the proxy config.
 - Services:
 
-  | Service | Image | Role |
-  | --- | --- | --- |
-  | `dynamodb` | `amazon/dynamodb-local` | Database, data in a named volume |
-  | `db-init` | API image, one-shot | Creates the table from the same definition CDK uses and seeds a demo user |
-  | `api` | `docker/api.Dockerfile` (Node 24) | Fastify on port 3333, the same `main.ts` that runs in the Web Function |
-  | `web` | `docker/web.Dockerfile` | `next dev` on port 3000 (dev mode only) |
-  | `proxy` | Caddy | Plays CloudFront: `/api/*` to `api`, everything else to `web` (dev) or the static export (prod-like), with the same `.html` rewrite |
-  | `dynamodb-admin` | `aaronshaf/dynamodb-admin` | Optional table browser, `tools` profile |
+  | Service          | Image                             | Role                                                                                                                                |
+  | ---------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+  | `dynamodb`       | `amazon/dynamodb-local`           | Database, data in a named volume                                                                                                    |
+  | `db-init`        | API image, one-shot               | Creates the table from the same definition CDK uses and seeds a demo user                                                           |
+  | `api`            | `docker/api.Dockerfile` (Node 24) | Fastify on port 3333, the same `main.ts` that runs in the Web Function                                                              |
+  | `web`            | `docker/web.Dockerfile`           | `next dev` on port 3000 (dev mode only)                                                                                             |
+  | `proxy`          | Caddy                             | Plays CloudFront: `/api/*` to `api`, everything else to `web` (dev) or the static export (prod-like), with the same `.html` rewrite |
+  | `dynamodb-admin` | `aaronshaf/dynamodb-admin`        | Optional table browser, `tools` profile                                                                                             |
 
 - Two modes:
   - **dev** (`docker compose up`): source bind-mounted, API and web hot-reload.

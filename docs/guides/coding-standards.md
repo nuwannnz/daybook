@@ -56,14 +56,14 @@ Rules every change follows. Lint enforces what it can; review enforces the rest.
 
 ESLint and Prettier ([ADR 0013](../decisions/0013-eslint-and-prettier.md)). The rules above that lint enforces:
 
-| Rule | Lint rule |
-| --- | --- |
-| No `any`, no non-null assertions | `@typescript-eslint/no-explicit-any`, `no-non-null-assertion` |
-| No single-letter names | `id-length` with `min: 2` |
-| No floating promises or unsafe `any` flows | `typescript-eslint` `strictTypeChecked` |
-| Layering and public APIs only | `@nx/enforce-module-boundaries` with tags and `bannedExternalImports` |
-| Accessible JSX | `jsx-a11y` |
-| Small files | `max-lines` warning at 250 |
+| Rule                                       | Lint rule                                                             |
+| ------------------------------------------ | --------------------------------------------------------------------- |
+| No `any`, no non-null assertions           | `@typescript-eslint/no-explicit-any`, `no-non-null-assertion`         |
+| No single-letter names                     | `id-length` with `min: 2`                                             |
+| No floating promises or unsafe `any` flows | `typescript-eslint` `strictTypeChecked`                               |
+| Layering and public APIs only              | `@nx/enforce-module-boundaries` with tags and `bannedExternalImports` |
+| Accessible JSX                             | `jsx-a11y`                                                            |
+| Small files                                | `max-lines` warning at 250                                            |
 
 - Prettier formats everything; never hand-format or argue style in review.
 - Staged files are formatted and lint-fixed on commit (Husky + lint-staged). CI fails on any lint warning or unformatted file.

@@ -6,11 +6,11 @@ A minimal note-taking app that puts notes, daily plans, weekly plans and long-ru
 
 ## Repository layout
 
-| Path | Contents |
-| --- | --- |
-| [docs/](docs/README.md) | All planning, product, architecture and decision documentation |
-| [design/](design/README.md) | Design system and design canvas screens |
-| `apps/`, `libs/` | Nx apps and libraries (not scaffolded yet; see the [module map](docs/architecture/overview.md#module-map)) |
+| Path                        | Contents                                                                                                   |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [docs/](docs/README.md)     | All planning, product, architecture and decision documentation                                             |
+| [design/](design/README.md) | Design system and design canvas screens                                                                    |
+| `apps/`, `libs/`            | Nx apps and libraries (not scaffolded yet; see the [module map](docs/architecture/overview.md#module-map)) |
 
 ## Getting started
 

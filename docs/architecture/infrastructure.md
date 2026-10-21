@@ -4,22 +4,22 @@ AWS us-east-1, one account, two environments (`dev`, `prod`), all defined in CDK
 
 ## Stacks per environment
 
-| Stack | Resources |
-| --- | --- |
-| `Daybook-{env}-Data` | DynamoDB table `daybook-{env}`, S3 bucket for oversized note documents |
-| `Daybook-{env}-Auth` | Cognito user pool and web app client (SRP, no secret), password policy, verification email |
-| `Daybook-{env}-Api` | Lambda Web Function, revision and `IamAuth` endpoint; IAM role scoped to the table and bucket; log groups with retention |
-| `Daybook-{env}-Web` | S3 bucket for the static build (private), CloudFront distribution with two behaviours, response headers policy, deployment of `apps/web` output |
-| `Daybook-{env}-Observability` | Dashboard, alarms, SNS email topic, log metric filters |
+| Stack                         | Resources                                                                                                                                       |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Daybook-{env}-Data`          | DynamoDB table `daybook-{env}`, S3 bucket for oversized note documents                                                                          |
+| `Daybook-{env}-Auth`          | Cognito user pool and web app client (SRP, no secret), password policy, verification email                                                      |
+| `Daybook-{env}-Api`           | Lambda Web Function, revision and `IamAuth` endpoint; IAM role scoped to the table and bucket; log groups with retention                        |
+| `Daybook-{env}-Web`           | S3 bucket for the static build (private), CloudFront distribution with two behaviours, response headers policy, deployment of `apps/web` output |
+| `Daybook-{env}-Observability` | Dashboard, alarms, SNS email topic, log metric filters                                                                                          |
 
 Account-level stack `Daybook-Account`: AWS Budget, budget SNS topic, GitHub OIDC provider and the deploy roles.
 
 ## CloudFront
 
-| Path | Origin | Cache | Notes |
-| --- | --- | --- | --- |
-| `/api/*` | Web Function endpoint, OAC (type `lambda`, sign always) | Disabled; forward query strings and the `X-Daybook-Token`, `X-Request-Id` headers | Methods: all |
-| `/*` | S3 build bucket, OAC | Hashed assets 1 year, HTML no-cache | CloudFront Function rewrites `/today` to `/today.html` for the static export |
+| Path     | Origin                                                  | Cache                                                                             | Notes                                                                        |
+| -------- | ------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `/api/*` | Web Function endpoint, OAC (type `lambda`, sign always) | Disabled; forward query strings and the `X-Daybook-Token`, `X-Request-Id` headers | Methods: all                                                                 |
+| `/*`     | S3 build bucket, OAC                                    | Hashed assets 1 year, HTML no-cache                                               | CloudFront Function rewrites `/today` to `/today.html` for the static export |
 
 The response headers policy sets a strict CSP (`default-src 'self'`, `connect-src 'self' https://cognito-idp.us-east-1.amazonaws.com`), HSTS, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` and `Permissions-Policy`.
 
@@ -46,16 +46,16 @@ Record the findings as an update to ADR 0003.
 
 ## Environments
 
-| | dev | prod |
-| --- | --- | --- |
-| URL | `https://{dev-id}.cloudfront.net` | `https://{prod-id}.cloudfront.net` |
-| Branch | `develop` | `main` |
-| Deploy trigger | Merge to `develop` | Merge to `main`, manual approval in the GitHub `prod` environment |
-| Stateful removal policy | Destroy | Retain |
-| Point-in-time recovery | Off | On |
-| Log retention | 14 days | 30 days |
-| Alarm notifications | Developer email | Developer email |
-| Test users | Seeded e2e user | Real users only |
+|                         | dev                               | prod                                                              |
+| ----------------------- | --------------------------------- | ----------------------------------------------------------------- |
+| URL                     | `https://{dev-id}.cloudfront.net` | `https://{prod-id}.cloudfront.net`                                |
+| Branch                  | `develop`                         | `main`                                                            |
+| Deploy trigger          | Merge to `develop`                | Merge to `main`, manual approval in the GitHub `prod` environment |
+| Stateful removal policy | Destroy                           | Retain                                                            |
+| Point-in-time recovery  | Off                               | On                                                                |
+| Log retention           | 14 days                           | 30 days                                                           |
+| Alarm notifications     | Developer email                   | Developer email                                                   |
+| Test users              | Seeded e2e user                   | Real users only                                                   |
 
 ## CI/CD
 
@@ -71,17 +71,17 @@ The workflow assumes a role through GitHub OIDC; no long-lived AWS keys exist.
 
 Monthly, us-east-1, assuming beta-scale use. Web Function memory is billed for every minute an environment is warm, including idle time until it is reaped (about 5 minutes).
 
-| Item | dev | prod | Basis |
-| --- | --- | --- | --- |
-| Lambda Web Function memory | $0.26 | $1.06 | 2 GB × $0.0000036667 per GB-second; 10 warm hours dev, 40 warm hours prod |
-| Lambda Web Function CPU and requests | $0.01 | $0.03 | Active CPU only; $0.30 per million requests |
-| DynamoDB | $0.01 | $0.03 | On-demand requests; storage inside always-free 25 GB |
-| CloudFront | $0.00 | $0.00 | Always-free 1 TB and 10 million requests |
-| S3 (build, CDK assets, note overflow) | $0.01 | $0.01 | A few MB |
-| Cognito | $0.00 | $0.00 | Free to 10,000 MAU |
-| CloudWatch logs, metrics, alarms, dashboard | $0.00 | $0.05 | Inside free tier (5 GB logs, 10 metrics, 10 alarms, 3 dashboards); logs stored twice for Web Functions |
-| SNS, Budgets, SSM | $0.00 | $0.00 | Free tier |
-| **Total** | **≈ $0.29** | **≈ $1.18** | **≈ $1.47 per month** |
+| Item                                        | dev         | prod        | Basis                                                                                                  |
+| ------------------------------------------- | ----------- | ----------- | ------------------------------------------------------------------------------------------------------ |
+| Lambda Web Function memory                  | $0.26       | $1.06       | 2 GB × $0.0000036667 per GB-second; 10 warm hours dev, 40 warm hours prod                              |
+| Lambda Web Function CPU and requests        | $0.01       | $0.03       | Active CPU only; $0.30 per million requests                                                            |
+| DynamoDB                                    | $0.01       | $0.03       | On-demand requests; storage inside always-free 25 GB                                                   |
+| CloudFront                                  | $0.00       | $0.00       | Always-free 1 TB and 10 million requests                                                               |
+| S3 (build, CDK assets, note overflow)       | $0.01       | $0.01       | A few MB                                                                                               |
+| Cognito                                     | $0.00       | $0.00       | Free to 10,000 MAU                                                                                     |
+| CloudWatch logs, metrics, alarms, dashboard | $0.00       | $0.05       | Inside free tier (5 GB logs, 10 metrics, 10 alarms, 3 dashboards); logs stored twice for Web Functions |
+| SNS, Budgets, SSM                           | $0.00       | $0.00       | Free tier                                                                                              |
+| **Total**                                   | **≈ $0.29** | **≈ $1.18** | **≈ $1.47 per month**                                                                                  |
 
 **Breakeven.** The cap allows about 68 warm environment-hours per month across both environments. Because one environment serves many concurrent requests, cost tracks hours with anyone using the app, not the number of users. Two or three people in different time zones keeping the app open all day would exceed it.
 

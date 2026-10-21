@@ -6,18 +6,18 @@ Related: [data model](data-model.md) · [infrastructure and cost](infrastructure
 
 ## Stack at a glance
 
-| Concern | Choice | ADR |
-| --- | --- | --- |
-| Repo | Nx monorepo, strict TypeScript | [0001](../decisions/0001-nx-monorepo-strict-typescript.md) |
-| Web | Next.js static export, React, Redux Toolkit + RTK Query | [0002](../decisions/0002-nextjs-static-export.md), [0007](../decisions/0007-online-first-mvp-with-redux.md) |
-| API | Fastify on Lambda Web Functions, zod contracts | [0003](../decisions/0003-fastify-api-on-lambda-web-functions.md) |
-| Data | DynamoDB single table, on-demand | [0005](../decisions/0005-dynamodb-single-table.md) |
-| Notes | TipTap editor, Yjs documents | [0006](../decisions/0006-notes-as-yjs-documents.md) |
-| Auth | Cognito, email and password | [0008](../decisions/0008-cognito-email-auth.md) |
-| Infra | AWS CDK, us-east-1, dev and prod | [0004](../decisions/0004-aws-cdk-for-infrastructure.md), [0012](../decisions/0012-environments-and-cost-guardrails.md) |
-| Tests | Vitest, Testing Library, Playwright, TDD | [0009](../decisions/0009-tdd-with-vitest-and-playwright.md) |
-| Observability | CloudWatch logs, EMF metrics, alarms | [0010](../decisions/0010-observability-on-cloudwatch.md) |
-| Code structure | Layers, ports and adapters | [0011](../decisions/0011-layered-architecture-ports-and-adapters.md) |
+| Concern        | Choice                                                  | ADR                                                                                                                    |
+| -------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Repo           | Nx monorepo, strict TypeScript                          | [0001](../decisions/0001-nx-monorepo-strict-typescript.md)                                                             |
+| Web            | Next.js static export, React, Redux Toolkit + RTK Query | [0002](../decisions/0002-nextjs-static-export.md), [0007](../decisions/0007-online-first-mvp-with-redux.md)            |
+| API            | Fastify on Lambda Web Functions, zod contracts          | [0003](../decisions/0003-fastify-api-on-lambda-web-functions.md)                                                       |
+| Data           | DynamoDB single table, on-demand                        | [0005](../decisions/0005-dynamodb-single-table.md)                                                                     |
+| Notes          | TipTap editor, Yjs documents                            | [0006](../decisions/0006-notes-as-yjs-documents.md)                                                                    |
+| Auth           | Cognito, email and password                             | [0008](../decisions/0008-cognito-email-auth.md)                                                                        |
+| Infra          | AWS CDK, us-east-1, dev and prod                        | [0004](../decisions/0004-aws-cdk-for-infrastructure.md), [0012](../decisions/0012-environments-and-cost-guardrails.md) |
+| Tests          | Vitest, Testing Library, Playwright, TDD                | [0009](../decisions/0009-tdd-with-vitest-and-playwright.md)                                                            |
+| Observability  | CloudWatch logs, EMF metrics, alarms                    | [0010](../decisions/0010-observability-on-cloudwatch.md)                                                               |
+| Code structure | Layers, ports and adapters                              | [0011](../decisions/0011-layered-architecture-ports-and-adapters.md)                                                   |
 
 ## System context
 
@@ -47,22 +47,22 @@ One origin serves both the app and `/api`, so there is no CORS and no cookie dom
 
 Nx projects and their tags. Arrows in the layer table of [0011](../decisions/0011-layered-architecture-ports-and-adapters.md) are enforced by lint.
 
-| Project | Tags | Contents |
-| --- | --- | --- |
-| `apps/web` | `scope:web`, `type:app` | Next.js routes, layout shell, composition root (wires adapters into the store) |
-| `apps/web-e2e` | `scope:web`, `type:e2e` | Playwright user journeys and axe checks |
-| `apps/api` | `scope:api`, `type:app` | `main.ts` (listens on `PORT`; runs in the Web Function and Docker), composition root, and `src/http/`: Fastify plugins and routes mapping HTTP to commands and queries |
-| `apps/api-e2e` | `scope:api`, `type:e2e` | Contract tests against a running API |
-| `apps/infra` | `scope:infra`, `type:app` | CDK app and constructs |
-| `libs/shared/domain` | `scope:shared`, `type:domain` | Entities, value objects, pure rules: Top 3 cap, day boundary, ISO week, tag parser, progress |
-| `libs/shared/contracts` | `scope:shared`, `type:contracts` | zod schemas for every request, response and analytics event |
-| `libs/shared/observability` | `scope:shared`, `type:infrastructure` | `Logger` and `Metrics` ports, pino and EMF adapters, request-id helpers |
-| `libs/api/application` | `scope:api`, `type:application` | Command and query handlers, repository and service ports |
-| `libs/api/infrastructure` | `scope:api`, `type:infrastructure` | DynamoDB repositories and the table definition (shared with CDK, tests and the local seed), Yjs note store, Cognito and local token verifiers, clock, id generator |
-| `libs/web/data-access` | `scope:web`, `type:data-access` | Redux store, RTK Query API, HTTP client adapter, `AuthService` adapter, undo command bus |
-| `libs/web/feature-*` | `scope:web`, `type:feature` | One per area: `shell`, `auth`, `capture`, `today`, `week`, `projects`, `notes`, `search`. Facade hooks plus container components that pass view models to `ui` |
-| `libs/web/editor` | `scope:web`, `type:feature` | `NoteEditor` (TipTap + Yjs) and `NoteDocumentSync` adapter |
-| `libs/ui` | `scope:shared`, `type:ui` | Presentational components matching `design/system/components`, CSS variables generated from `design/system/tokens.json` |
+| Project                     | Tags                                  | Contents                                                                                                                                                               |
+| --------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apps/web`                  | `scope:web`, `type:app`               | Next.js routes, layout shell, composition root (wires adapters into the store)                                                                                         |
+| `apps/web-e2e`              | `scope:web`, `type:e2e`               | Playwright user journeys and axe checks                                                                                                                                |
+| `apps/api`                  | `scope:api`, `type:app`               | `main.ts` (listens on `PORT`; runs in the Web Function and Docker), composition root, and `src/http/`: Fastify plugins and routes mapping HTTP to commands and queries |
+| `apps/api-e2e`              | `scope:api`, `type:e2e`               | Contract tests against a running API                                                                                                                                   |
+| `apps/infra`                | `scope:infra`, `type:app`             | CDK app and constructs                                                                                                                                                 |
+| `libs/shared/domain`        | `scope:shared`, `type:domain`         | Entities, value objects, pure rules: Top 3 cap, day boundary, ISO week, tag parser, progress                                                                           |
+| `libs/shared/contracts`     | `scope:shared`, `type:contracts`      | zod schemas for every request, response and analytics event                                                                                                            |
+| `libs/shared/observability` | `scope:shared`, `type:infrastructure` | `Logger` and `Metrics` ports, pino and EMF adapters, request-id helpers                                                                                                |
+| `libs/api/application`      | `scope:api`, `type:application`       | Command and query handlers, repository and service ports                                                                                                               |
+| `libs/api/infrastructure`   | `scope:api`, `type:infrastructure`    | DynamoDB repositories and the table definition (shared with CDK, tests and the local seed), Yjs note store, Cognito and local token verifiers, clock, id generator     |
+| `libs/web/data-access`      | `scope:web`, `type:data-access`       | Redux store, RTK Query API, HTTP client adapter, `AuthService` adapter, undo command bus                                                                               |
+| `libs/web/feature-*`        | `scope:web`, `type:feature`           | One per area: `shell`, `auth`, `capture`, `today`, `week`, `projects`, `notes`, `search`. Facade hooks plus container components that pass view models to `ui`         |
+| `libs/web/editor`           | `scope:web`, `type:feature`           | `NoteEditor` (TipTap + Yjs) and `NoteDocumentSync` adapter                                                                                                             |
+| `libs/ui`                   | `scope:shared`, `type:ui`             | Presentational components matching `design/system/components`, CSS variables generated from `design/system/tokens.json`                                                |
 
 Why `application` and `infrastructure` are libraries but routes are not: [ADR 0011](../decisions/0011-layered-architecture-ports-and-adapters.md#which-layers-are-libraries). The local Docker stack is described in [ADR 0015](../decisions/0015-local-stack-with-docker-compose.md).
 

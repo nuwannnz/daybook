@@ -10,12 +10,12 @@ Each environment should map to a branch so it is always clear what is running wh
 
 ## Decision
 
-| Branch | Purpose | Deploys to | Updated by |
-| --- | --- | --- | --- |
-| `develop` | Integration; GitHub default branch | dev, on every merge | Squash-merged pull requests from feature branches |
-| `main` | Production | prod, on every merge, after manual approval in the GitHub `prod` environment | Release pull requests from `develop` (merge commit), or hotfix pull requests |
-| `feat/*`, `fix/*`, `docs/*`, `chore/*` | Work in progress | none | Branched from `develop` |
-| `hotfix/*` | Urgent prod fix | none | Branched from `main`; after merging to `main`, `main` is merged back into `develop` |
+| Branch                                 | Purpose                            | Deploys to                                                                   | Updated by                                                                          |
+| -------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `develop`                              | Integration; GitHub default branch | dev, on every merge                                                          | Squash-merged pull requests from feature branches                                   |
+| `main`                                 | Production                         | prod, on every merge, after manual approval in the GitHub `prod` environment | Release pull requests from `develop` (merge commit), or hotfix pull requests        |
+| `feat/*`, `fix/*`, `docs/*`, `chore/*` | Work in progress                   | none                                                                         | Branched from `develop`                                                             |
+| `hotfix/*`                             | Urgent prod fix                    | none                                                                         | Branched from `main`; after merging to `main`, `main` is merged back into `develop` |
 
 - Both `develop` and `main` are protected: pull requests only, all checks green, no force pushes.
 - A successful prod deploy tags the merge commit with its semantic version and creates a GitHub release ([0016](0016-semantic-versioning.md)).

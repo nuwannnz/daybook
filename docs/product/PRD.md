@@ -42,11 +42,11 @@ v1 succeeds if a person can run their whole day and week from Daybook without a 
 
 The primary user is an individual knowledge worker who runs two to five projects at once alongside daily admin. Daybook v1 is single-player; teams are out of scope.
 
-| Persona | Context | What they need most | Where they use it |
-| --- | --- | --- | --- |
-| Independent professional (designer, consultant, freelancer) | Several client projects plus their own admin | See every project's next step without opening each one | Laptop all day, phone for capture |
-| Graduate student or researcher | One long project (thesis) plus teaching and reading | Break a months-long project into weekly goals and daily blocks | Laptop for writing, phone for ideas |
-| Busy individual contributor | Day job tasks plus a side project or personal goals | A daily Top 3 and a calm place to think | Laptop at work, phone in the evening |
+| Persona                                                     | Context                                             | What they need most                                            | Where they use it                    |
+| ----------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------ |
+| Independent professional (designer, consultant, freelancer) | Several client projects plus their own admin        | See every project's next step without opening each one         | Laptop all day, phone for capture    |
+| Graduate student or researcher                              | One long project (thesis) plus teaching and reading | Break a months-long project into weekly goals and daily blocks | Laptop for writing, phone for ideas  |
+| Busy individual contributor                                 | Day job tasks plus a side project or personal goals | A daily Top 3 and a calm place to think                        | Laptop at work, phone in the evening |
 
 **Jobs to be done**
 
@@ -101,16 +101,16 @@ Requirements are numbered by area and prioritised P0 (MVP must-have), P1 (v1 lau
 
 Capture is the front door: one input, available everywhere, that never asks where something goes before saving it.
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| CAP-1 | A capture bar sits at the top of Today and opens from anywhere with ⌘K / Ctrl+K then typing. | P0 |
-| CAP-2 | Enter saves the text as a task on today's list; the field clears and keeps focus for the next item. | P0 |
-| CAP-3 | An inline tag (`#website`, `#thesis`) files the item under the matching project and is stripped from the title. | P0 |
-| CAP-4 | Items with no tag land in Inbox, shown with a neutral grey chip. | P0 |
-| CAP-5 | Shift+Enter (desktop) or the Task / Note toggle (mobile) saves the text as a note instead of a task. | P1 |
-| CAP-6 | Natural-language dates (`tomorrow`, `fri`, `oct 30`) schedule the task on that day. | P1 |
-| CAP-7 | Unknown tags offer “Create project #name” inline rather than failing silently. | P1 |
-| CAP-8 | `!` marks an item as a Top 3 candidate. | P2 |
+| ID    | Requirement                                                                                                     | Priority |
+| ----- | --------------------------------------------------------------------------------------------------------------- | -------- |
+| CAP-1 | A capture bar sits at the top of Today and opens from anywhere with ⌘K / Ctrl+K then typing.                    | P0       |
+| CAP-2 | Enter saves the text as a task on today's list; the field clears and keeps focus for the next item.             | P0       |
+| CAP-3 | An inline tag (`#website`, `#thesis`) files the item under the matching project and is stripped from the title. | P0       |
+| CAP-4 | Items with no tag land in Inbox, shown with a neutral grey chip.                                                | P0       |
+| CAP-5 | Shift+Enter (desktop) or the Task / Note toggle (mobile) saves the text as a note instead of a task.            | P1       |
+| CAP-6 | Natural-language dates (`tomorrow`, `fri`, `oct 30`) schedule the task on that day.                             | P1       |
+| CAP-7 | Unknown tags offer “Create project #name” inline rather than failing silently.                                  | P1       |
+| CAP-8 | `!` marks an item as a Top 3 candidate.                                                                         | P2       |
 
 Acceptance: from a cold app, a task is saved in ≤ 2 seconds and ≤ 1 keystroke beyond the text; the saved item appears in the list within 100 ms; a project tag always matches case-insensitively.
 
@@ -118,17 +118,17 @@ Acceptance: from a cold app, a task is saved in ≤ 2 seconds and ≤ 1 keystrok
 
 Today answers “what matters now, and when will I do it?” on a single screen.
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| TOD-1 | Header shows weekday, date and ISO week number, with previous / next day and a Today button. | P0 |
-| TOD-2 | **Top 3**: up to three tasks pinned as the day's focus, numbered and coloured by project. A fourth pin asks which one to swap out. | P0 |
-| TOD-3 | **Also today**: every other task scheduled today, with a done count and a progress bar (done ÷ total). | P0 |
-| TOD-4 | Ticking a task strikes it through in place; it is not removed until the next day, so progress stays visible. | P0 |
-| TOD-5 | **Carry-over banner**: unfinished tasks from the previous working day appear in a dismissible banner with “Bring to today” and “Dismiss”. Dismissed tasks go back to the project or Inbox unscheduled. | P0 |
-| TOD-6 | **Schedule**: calendar events and time-blocked tasks in time order, with a “now” line and visible free gaps. | P1 |
-| TOD-7 | Dragging a task into a free gap creates a time block of the task's estimate (default 30 min). | P1 |
-| TOD-8 | **Daily note**: one note per day, created on first keystroke, with an Open link to the full editor. | P0 |
-| TOD-9 | Tasks reorder by drag and by Alt+↑ / Alt+↓. | P1 |
+| ID    | Requirement                                                                                                                                                                                            | Priority |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| TOD-1 | Header shows weekday, date and ISO week number, with previous / next day and a Today button.                                                                                                           | P0       |
+| TOD-2 | **Top 3**: up to three tasks pinned as the day's focus, numbered and coloured by project. A fourth pin asks which one to swap out.                                                                     | P0       |
+| TOD-3 | **Also today**: every other task scheduled today, with a done count and a progress bar (done ÷ total).                                                                                                 | P0       |
+| TOD-4 | Ticking a task strikes it through in place; it is not removed until the next day, so progress stays visible.                                                                                           | P0       |
+| TOD-5 | **Carry-over banner**: unfinished tasks from the previous working day appear in a dismissible banner with “Bring to today” and “Dismiss”. Dismissed tasks go back to the project or Inbox unscheduled. | P0       |
+| TOD-6 | **Schedule**: calendar events and time-blocked tasks in time order, with a “now” line and visible free gaps.                                                                                           | P1       |
+| TOD-7 | Dragging a task into a free gap creates a time block of the task's estimate (default 30 min).                                                                                                          | P1       |
+| TOD-8 | **Daily note**: one note per day, created on first keystroke, with an Open link to the full editor.                                                                                                    | P0       |
+| TOD-9 | Tasks reorder by drag and by Alt+↑ / Alt+↓.                                                                                                                                                            | P1       |
 
 Acceptance: at 1440 × 900 the Top 3, at least five other tasks, the schedule until 18:00 and the daily note preview are visible without scrolling; the carry-over banner never appears twice for the same day.
 
@@ -136,15 +136,15 @@ Acceptance: at 1440 × 900 the Top 3, at least five other tasks, the schedule un
 
 This week turns project goals into a seven-day plan.
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| WK-1 | Header shows week number and date range, with previous / next week. Weeks start Monday by default; Sunday is a setting. | P0 |
-| WK-2 | **Goals this week**: at most one goal per active project, each showing progress as linked tasks done of total. | P0 |
-| WK-3 | **Plan board**: seven day columns with that day's tasks as project-coloured cards; today's column is highlighted; past days show done tasks struck through. | P0 |
-| WK-4 | Tasks drag between days; on mobile, a long-press opens a “Move to” day picker. | P0 |
-| WK-5 | **Not scheduled yet** tray lists project tasks with no day, each with a “Do today” action. An empty tray shows “Everything has a day.” | P0 |
-| WK-6 | **Weekly review** card with three fixed prompts that opens a pre-filled review note. | P1 |
-| WK-7 | A soft load indicator per day warns when scheduled estimates exceed the person's working hours. | P2 |
+| ID   | Requirement                                                                                                                                                 | Priority |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| WK-1 | Header shows week number and date range, with previous / next week. Weeks start Monday by default; Sunday is a setting.                                     | P0       |
+| WK-2 | **Goals this week**: at most one goal per active project, each showing progress as linked tasks done of total.                                              | P0       |
+| WK-3 | **Plan board**: seven day columns with that day's tasks as project-coloured cards; today's column is highlighted; past days show done tasks struck through. | P0       |
+| WK-4 | Tasks drag between days; on mobile, a long-press opens a “Move to” day picker.                                                                              | P0       |
+| WK-5 | **Not scheduled yet** tray lists project tasks with no day, each with a “Do today” action. An empty tray shows “Everything has a day.”                      | P0       |
+| WK-6 | **Weekly review** card with three fixed prompts that opens a pre-filled review note.                                                                        | P1       |
+| WK-7 | A soft load indicator per day warns when scheduled estimates exceed the person's working hours.                                                             | P2       |
 
 Acceptance: a person can schedule five tray items across the week in under 30 seconds with drag only; the board scrolls horizontally inside its box below 1000 px wide rather than squashing columns.
 
@@ -152,16 +152,16 @@ Acceptance: a person can schedule five tray items across the week in under 30 se
 
 A project holds work that spans weeks: a goal, milestones, tasks and notes.
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| PRJ-1 | Creating a project needs only a name; the app assigns the next free pastel colour, editable later. | P0 |
-| PRJ-2 | Project header shows name, one-line goal, target date, current phase and progress (tasks done of total). | P0 |
-| PRJ-3 | **Milestones**: an ordered list, each with dates, status (Done, In progress, Up next) and its tasks; the active milestone is expanded by default. | P0 |
-| PRJ-4 | Overview / Plan / Notes tabs; Overview shows milestones and notes side by side. | P0 |
-| PRJ-5 | **Pinned decision**: any project note can be pinned to the top as the current key decision. | P1 |
-| PRJ-6 | **On your plan**: chips linking to the days this week where the project's tasks are scheduled. | P1 |
-| PRJ-7 | Projects can be archived; archived projects leave the sidebar but stay searchable. | P0 |
-| PRJ-8 | A project with no task done in 14 days shows a gentle “stalled” hint in the sidebar. | P2 |
+| ID    | Requirement                                                                                                                                       | Priority |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| PRJ-1 | Creating a project needs only a name; the app assigns the next free pastel colour, editable later.                                                | P0       |
+| PRJ-2 | Project header shows name, one-line goal, target date, current phase and progress (tasks done of total).                                          | P0       |
+| PRJ-3 | **Milestones**: an ordered list, each with dates, status (Done, In progress, Up next) and its tasks; the active milestone is expanded by default. | P0       |
+| PRJ-4 | Overview / Plan / Notes tabs; Overview shows milestones and notes side by side.                                                                   | P0       |
+| PRJ-5 | **Pinned decision**: any project note can be pinned to the top as the current key decision.                                                       | P1       |
+| PRJ-6 | **On your plan**: chips linking to the days this week where the project's tasks are scheduled.                                                    | P1       |
+| PRJ-7 | Projects can be archived; archived projects leave the sidebar but stay searchable.                                                                | P0       |
+| PRJ-8 | A project with no task done in 14 days shows a gentle “stalled” hint in the sidebar.                                                              | P2       |
 
 Acceptance: a new project with three milestones and ten tasks can be set up in under three minutes using the keyboard only; progress numbers on the project page and the weekly goal card always agree.
 
@@ -169,37 +169,37 @@ Acceptance: a new project with three milestones and ten tasks can be set up in u
 
 Notes are plain, fast documents that always know which day and project they belong to.
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| NOT-1 | Two-pane layout: a filterable note list and the editor. Filters: All, Daily, each project, Ideas. | P0 |
-| NOT-2 | Editor supports headings, paragraphs, bullet lists, checklists, bold, italic and links. Markdown shortcuts (`#`, `-`, `[]`) work as you type. | P0 |
-| NOT-3 | A checklist item can be promoted to a task with one action, keeping a link back to the note. | P1 |
-| NOT-4 | Each note has a group chip (Daily, project or Ideas) and a “Linked” footer listing the days and projects it is tied to. | P0 |
-| NOT-5 | Notes save automatically on every change; no Save button exists. | P0 |
-| NOT-6 | `[[` opens a picker to link another note, day or project. | P1 |
-| NOT-7 | Note history: the last 30 days of versions can be viewed and restored. | P2 |
+| ID    | Requirement                                                                                                                                   | Priority |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| NOT-1 | Two-pane layout: a filterable note list and the editor. Filters: All, Daily, each project, Ideas.                                             | P0       |
+| NOT-2 | Editor supports headings, paragraphs, bullet lists, checklists, bold, italic and links. Markdown shortcuts (`#`, `-`, `[]`) work as you type. | P0       |
+| NOT-3 | A checklist item can be promoted to a task with one action, keeping a link back to the note.                                                  | P1       |
+| NOT-4 | Each note has a group chip (Daily, project or Ideas) and a “Linked” footer listing the days and projects it is tied to.                       | P0       |
+| NOT-5 | Notes save automatically on every change; no Save button exists.                                                                              | P0       |
+| NOT-6 | `[[` opens a picker to link another note, day or project.                                                                                     | P1       |
+| NOT-7 | Note history: the last 30 days of versions can be viewed and restored.                                                                        | P2       |
 
 Acceptance: typing latency stays under 16 ms per keystroke in a 5,000-word note; a closed and reopened app never loses more than the last 1 second of typing.
 
 ### 6. Search and navigation
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| NAV-1 | Persistent sidebar: Today, This week, Notes, then the project list with colour dots and New project. | P0 |
-| NAV-2 | ⌘K opens a command bar that searches tasks, notes and projects and also runs commands (new note, go to week). | P0 |
-| NAV-3 | Keyboard shortcuts: G then T / W / N jumps to Today, Week, Notes; ? lists all shortcuts. | P1 |
-| NAV-4 | Below 820 px the sidebar collapses into a top menu; content never scrolls sideways except the week board. | P0 |
+| ID    | Requirement                                                                                                   | Priority |
+| ----- | ------------------------------------------------------------------------------------------------------------- | -------- |
+| NAV-1 | Persistent sidebar: Today, This week, Notes, then the project list with colour dots and New project.          | P0       |
+| NAV-2 | ⌘K opens a command bar that searches tasks, notes and projects and also runs commands (new note, go to week). | P0       |
+| NAV-3 | Keyboard shortcuts: G then T / W / N jumps to Today, Week, Notes; ? lists all shortcuts.                      | P1       |
+| NAV-4 | Below 820 px the sidebar collapses into a top menu; content never scrolls sideways except the week board.     | P0       |
 
 ### 7. Mobile
 
 Mobile is for capture and checking today, not for heavy planning. P0 items ship first in the responsive web app; native iOS and Android apps follow in v1.1.
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| MOB-1 | Today view: “Now” card for the current time block, Top 3 and Also today with checkboxes. | P0 |
-| MOB-2 | A floating capture button opens a bottom sheet with a Task / Note toggle, text field and project chips. | P0 |
-| MOB-3 | Bottom tab bar: Today, Week, Notes, Projects. | P0 |
-| MOB-4 | Home-screen widget and share-sheet extension for capture. | P2 |
+| ID    | Requirement                                                                                             | Priority |
+| ----- | ------------------------------------------------------------------------------------------------------- | -------- |
+| MOB-1 | Today view: “Now” card for the current time block, Top 3 and Also today with checkboxes.                | P0       |
+| MOB-2 | A floating capture button opens a bottom sheet with a Task / Note toggle, text field and project chips. | P0       |
+| MOB-3 | Bottom tab bar: Today, Week, Notes, Projects.                                                           | P0       |
+| MOB-4 | Home-screen widget and share-sheet extension for capture.                                               | P2       |
 
 Acceptance: from unlocking the phone, a task is captured in under 5 seconds with the app already installed.
 
@@ -230,26 +230,26 @@ The look is a near-white ground, one sans-serif typeface, dark ink actions and s
 
 **Neutrals**
 
-| Token | Hex | Use |
-| --- | --- | --- |
-| `bg` | #FCFCFD | Page background |
-| `surface` | #FFFFFF | Cards, editor, inputs |
-| `sidebar` | #F4F3F8 | Sidebar, segmented controls, quiet chips |
-| `border` | #E8E6EF | Card and input borders |
-| `ink` | #1F1D2B | Body text, primary buttons |
-| `ink-muted` | #625F72 | Labels, meta text (5.6:1 on sidebar) |
-| `ink-done` | #6F6C7E | Struck-through completed tasks |
+| Token       | Hex     | Use                                      |
+| ----------- | ------- | ---------------------------------------- |
+| `bg`        | #FCFCFD | Page background                          |
+| `surface`   | #FFFFFF | Cards, editor, inputs                    |
+| `sidebar`   | #F4F3F8 | Sidebar, segmented controls, quiet chips |
+| `border`    | #E8E6EF | Card and input borders                   |
+| `ink`       | #1F1D2B | Body text, primary buttons               |
+| `ink-muted` | #625F72 | Labels, meta text (5.6:1 on sidebar)     |
+| `ink-done`  | #6F6C7E | Struck-through completed tasks           |
 
 **Project pastels** (assigned in this order to new projects)
 
-| Name | Background | Text on background | Dot / bar | Contrast (text on bg) |
-| --- | --- | --- | --- | --- |
-| Lavender | #ECE7FD | #4B3A9E | #B7A6F5 | about 7.3:1 |
-| Mint | #DFF3E8 | #24684A | #8FD4AE | about 5.8:1 |
-| Peach | #FDE6D9 | #94431C | #F5B08C | about 5.7:1 |
-| Rose | #FBE1EA | #8E2F52 | #F0A3BE | about 6.5:1 |
-| Sky | #DDEBFB | #275A8E | #93BDEE | about 5.9:1 |
-| Butter | #FBF0C4 | #6E5400 | #EBCB5C | about 5.9:1 |
+| Name     | Background | Text on background | Dot / bar | Contrast (text on bg) |
+| -------- | ---------- | ------------------ | --------- | --------------------- |
+| Lavender | #ECE7FD    | #4B3A9E            | #B7A6F5   | about 7.3:1           |
+| Mint     | #DFF3E8    | #24684A            | #8FD4AE   | about 5.8:1           |
+| Peach    | #FDE6D9    | #94431C            | #F5B08C   | about 5.7:1           |
+| Rose     | #FBE1EA    | #8E2F52            | #F0A3BE   | about 6.5:1           |
+| Sky      | #DDEBFB    | #275A8E            | #93BDEE   | about 5.9:1           |
+| Butter   | #FBF0C4    | #6E5400            | #EBCB5C   | about 5.9:1           |
 
 Butter is reserved for system notices (carry-over banner, pinned decisions) and Daily notes; Sky is used for calendar events. Projects beyond six reuse the list with a second dot shape.
 
@@ -265,14 +265,14 @@ Butter is reserved for system notices (carry-over banner, pinned decisions) and 
 
 Six entities cover v1; Task is the hub, and Day and Week are derived views rather than stored containers.
 
-| Entity | Key fields | Relationships |
-| --- | --- | --- |
-| Project | id, name, goal, colour, targetDate, status (active, archived), createdAt | Has many Milestones, Tasks, Notes; has one WeeklyGoal per week |
-| Milestone | id, projectId, title, startDate, endDate, order, status (done, active, next) | Belongs to Project; has many Tasks |
-| Task | id, title, projectId?, milestoneId?, scheduledDate?, timeBlock {start, end}?, estimateMin, isTop3, order, doneAt?, sourceNoteId?, createdAt | Belongs to Project (or Inbox when null), optionally a Milestone and a source Note |
-| Note | id, title, body (Yjs document with a block JSON snapshot), kind (daily, project, idea), projectId?, date?, pinned, updatedAt | Belongs to a Project or a Day; links to other Notes, Days, Projects |
-| WeeklyGoal | id, projectId, isoWeek, title | Belongs to Project; progress = linked Tasks done ÷ total |
-| CarryOverDecision | id, date, taskIds, action (brought, dismissed) | Records each day's carry-over choice so the banner shows once |
+| Entity            | Key fields                                                                                                                                  | Relationships                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Project           | id, name, goal, colour, targetDate, status (active, archived), createdAt                                                                    | Has many Milestones, Tasks, Notes; has one WeeklyGoal per week                    |
+| Milestone         | id, projectId, title, startDate, endDate, order, status (done, active, next)                                                                | Belongs to Project; has many Tasks                                                |
+| Task              | id, title, projectId?, milestoneId?, scheduledDate?, timeBlock {start, end}?, estimateMin, isTop3, order, doneAt?, sourceNoteId?, createdAt | Belongs to Project (or Inbox when null), optionally a Milestone and a source Note |
+| Note              | id, title, body (Yjs document with a block JSON snapshot), kind (daily, project, idea), projectId?, date?, pinned, updatedAt                | Belongs to a Project or a Day; links to other Notes, Days, Projects               |
+| WeeklyGoal        | id, projectId, isoWeek, title                                                                                                               | Belongs to Project; progress = linked Tasks done ÷ total                          |
+| CarryOverDecision | id, date, taskIds, action (brought, dismissed)                                                                                              | Records each day's carry-over choice so the banner shows once                     |
 
 **Rules**
 
@@ -286,31 +286,31 @@ Six entities cover v1; Task is the hub, and Day and Week are derived views rathe
 
 Daybook must feel instant, and from v1 work offline; speed is part of the minimal feel, not a separate feature.
 
-| Area | Requirement |
-| --- | --- |
-| Performance | Cold start to interactive Today ≤ 1.5 s on a mid-range laptop and ≤ 2 s on a mid-range phone. Any view switch ≤ 100 ms. Typing latency < 16 ms. |
-| Offline | MVP: online-first with optimistic updates; while offline, writes pause behind a quiet banner and note typing is buffered locally. v1 (P1): all features work offline against a local store, and changes sync when the connection returns. |
-| Sync | Changes reach other signed-in devices within 5 s when online. Tasks merge per field (last writer wins); notes merge as CRDT documents, so concurrent edits are kept rather than overwritten. |
-| Durability | No more than 1 s of typing lost on crash; unsent note edits are buffered on the device until the server confirms; account export to Markdown + JSON at any time. |
-| Accessibility | WCAG 2.1 AA: 4.5:1 text contrast, 44 × 44 px touch targets, full keyboard operation, visible focus rings, screen-reader labels on all icon buttons, reduced-motion support. |
-| Privacy and security | Data encrypted in transit (TLS 1.2+) and at rest. No third-party ad or tracking SDKs. Analytics events carry no note or task content. Calendar access is read-only and revocable. |
-| Platforms | Web app (latest two versions of Chrome, Safari, Firefox, Edge) and installable desktop PWA at launch; iOS and Android apps in v1.1. |
-| Responsiveness | Layouts work from 360 px to 2560 px wide; below 820 px the sidebar collapses and two-column views stack. |
-| Localisation | All copy externalised; dates, week start and 12 / 24 h time follow the device locale. English only at launch. |
+| Area                 | Requirement                                                                                                                                                                                                                               |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Performance          | Cold start to interactive Today ≤ 1.5 s on a mid-range laptop and ≤ 2 s on a mid-range phone. Any view switch ≤ 100 ms. Typing latency < 16 ms.                                                                                           |
+| Offline              | MVP: online-first with optimistic updates; while offline, writes pause behind a quiet banner and note typing is buffered locally. v1 (P1): all features work offline against a local store, and changes sync when the connection returns. |
+| Sync                 | Changes reach other signed-in devices within 5 s when online. Tasks merge per field (last writer wins); notes merge as CRDT documents, so concurrent edits are kept rather than overwritten.                                              |
+| Durability           | No more than 1 s of typing lost on crash; unsent note edits are buffered on the device until the server confirms; account export to Markdown + JSON at any time.                                                                          |
+| Accessibility        | WCAG 2.1 AA: 4.5:1 text contrast, 44 × 44 px touch targets, full keyboard operation, visible focus rings, screen-reader labels on all icon buttons, reduced-motion support.                                                               |
+| Privacy and security | Data encrypted in transit (TLS 1.2+) and at rest. No third-party ad or tracking SDKs. Analytics events carry no note or task content. Calendar access is read-only and revocable.                                                         |
+| Platforms            | Web app (latest two versions of Chrome, Safari, Firefox, Edge) and installable desktop PWA at launch; iOS and Android apps in v1.1.                                                                                                       |
+| Responsiveness       | Layouts work from 360 px to 2560 px wide; below 820 px the sidebar collapses and two-column views stack.                                                                                                                                  |
+| Localisation         | All copy externalised; dates, week start and 12 / 24 h time follow the device locale. English only at launch.                                                                                                                             |
 
 ## Success metrics
 
 The north-star metric is **weekly planned days**: the number of days per week on which a person sets a Top 3 and completes at least one of them. Targets below are proposed starting points to confirm after the beta baseline.
 
-| Metric | Definition | Proposed target (90 days after launch) |
-| --- | --- | --- |
-| Weekly planned days | Days per active user per week with a Top 3 set and ≥ 1 Top 3 task done | 3.5 |
-| Capture speed | Median time from opening capture to saved item | ≤ 2 s |
-| Week-4 retention | Share of new users active in their fourth week | 35% |
-| Weekly plan adoption | Share of weekly active users who set at least one weekly goal | 40% |
-| Projects in use | Share of weekly active users with ≥ 1 project that had a task done that week | 50% |
-| Carry-over honesty | Share of carry-over banners acted on (brought or dismissed) rather than ignored | 70% |
-| Accessibility defects | Open WCAG 2.1 AA issues at launch | 0 |
+| Metric                | Definition                                                                      | Proposed target (90 days after launch) |
+| --------------------- | ------------------------------------------------------------------------------- | -------------------------------------- |
+| Weekly planned days   | Days per active user per week with a Top 3 set and ≥ 1 Top 3 task done          | 3.5                                    |
+| Capture speed         | Median time from opening capture to saved item                                  | ≤ 2 s                                  |
+| Week-4 retention      | Share of new users active in their fourth week                                  | 35%                                    |
+| Weekly plan adoption  | Share of weekly active users who set at least one weekly goal                   | 40%                                    |
+| Projects in use       | Share of weekly active users with ≥ 1 project that had a task done that week    | 50%                                    |
+| Carry-over honesty    | Share of carry-over banners acted on (brought or dismissed) rather than ignored | 70%                                    |
+| Accessibility defects | Open WCAG 2.1 AA issues at launch                                               | 0                                      |
 
 **Analytics events** (no content, only ids and counts): `capture_opened`, `item_captured` (type, has_tag, has_date, ms_to_save), `task_completed` (is_top3, view), `top3_set`, `carryover_shown`, `carryover_action` (brought / dismissed / ignored), `week_viewed`, `weekly_goal_set`, `task_moved` (from_day, to_day, method), `project_created`, `milestone_completed`, `note_created` (kind), `search_used` (result_type).
 
@@ -346,21 +346,21 @@ AI agents arrive after the v1 launch, starting with capture tidying and notes Q&
 
 **Integration points**
 
-| ID | Agent | Where | What it does | Phase |
-| --- | --- | --- | --- | --- |
-| AI-1 | Capture tidier | Capture, Inbox | Splits a brain dump into separate items, picks the project, reads dates and estimates time | v1.1 |
-| AI-2 | Notes Q&A | ⌘K command bar, Notes | Answers questions from the person's notes, daily notes and project notes, citing each source | v1.1 |
-| AI-3 | Action-item finder | Notes | Spots action items in a note and offers to turn them into linked tasks (automated NOT-3) | v1.1 |
-| AI-4 | Morning planner | Today | Suggests a Top 3 from deadlines, active milestones and weekly goals, and fits tasks into free calendar gaps | v1.2 |
-| AI-5 | Carry-over coach | Today banner | Suggests reschedule, split, return to project or drop for each leftover; flags tasks that slipped three or more times | v1.2 |
-| AI-6 | Weekly planner | This week | Drafts one goal per project from its milestones and spreads tray tasks across days within working hours | v1.2 |
-| AI-7 | Review drafter | Weekly review | Pre-fills the Sunday review from done tasks, slipped tasks and daily notes | v1.2 |
-| AI-8 | Project breakdown | Projects | Drafts milestones and starter tasks from a project name and one-line goal | Later |
-| AI-9 | Catch me up | Project page | Summarises where the person left off, key decisions and the next step after days away | Later |
-| AI-10 | Stalled-project nudge | Sidebar | Suggests one small next step for a project with no task done in 14 days (builds on PRJ-8) | Later |
-| AI-11 | Plain-language commands | ⌘K command bar | Runs edits such as “move all thesis tasks from Friday to Monday” after showing a preview | Later |
-| AI-12 | Voice capture | Mobile | Sends dictated brain dumps through the capture tidier | Later |
-| AI-13 | Daybook MCP server | Outside assistants | Lets assistants such as Claude read the plan and add tasks; opens the way to email and Slack capture | Later |
+| ID    | Agent                   | Where                 | What it does                                                                                                          | Phase |
+| ----- | ----------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| AI-1  | Capture tidier          | Capture, Inbox        | Splits a brain dump into separate items, picks the project, reads dates and estimates time                            | v1.1  |
+| AI-2  | Notes Q&A               | ⌘K command bar, Notes | Answers questions from the person's notes, daily notes and project notes, citing each source                          | v1.1  |
+| AI-3  | Action-item finder      | Notes                 | Spots action items in a note and offers to turn them into linked tasks (automated NOT-3)                              | v1.1  |
+| AI-4  | Morning planner         | Today                 | Suggests a Top 3 from deadlines, active milestones and weekly goals, and fits tasks into free calendar gaps           | v1.2  |
+| AI-5  | Carry-over coach        | Today banner          | Suggests reschedule, split, return to project or drop for each leftover; flags tasks that slipped three or more times | v1.2  |
+| AI-6  | Weekly planner          | This week             | Drafts one goal per project from its milestones and spreads tray tasks across days within working hours               | v1.2  |
+| AI-7  | Review drafter          | Weekly review         | Pre-fills the Sunday review from done tasks, slipped tasks and daily notes                                            | v1.2  |
+| AI-8  | Project breakdown       | Projects              | Drafts milestones and starter tasks from a project name and one-line goal                                             | Later |
+| AI-9  | Catch me up             | Project page          | Summarises where the person left off, key decisions and the next step after days away                                 | Later |
+| AI-10 | Stalled-project nudge   | Sidebar               | Suggests one small next step for a project with no task done in 14 days (builds on PRJ-8)                             | Later |
+| AI-11 | Plain-language commands | ⌘K command bar        | Runs edits such as “move all thesis tasks from Friday to Monday” after showing a preview                              | Later |
+| AI-12 | Voice capture           | Mobile                | Sends dictated brain dumps through the capture tidier                                                                 | Later |
+| AI-13 | Daybook MCP server      | Outside assistants    | Lets assistants such as Claude read the plan and add tasks; opens the way to email and Slack capture                  | Later |
 
 **Data model additions**
 
@@ -383,13 +383,13 @@ AI agents arrive after the v1 launch, starting with capture tidying and notes Q&
 
 The biggest risk is that Daybook becomes one more place to check; every mitigation below aims at making it the only place.
 
-| Risk | Impact | Mitigation |
-| --- | --- | --- |
-| Users keep their old to-do app and Daybook becomes a second inbox | Low retention | Import from Todoist, Things and Apple Reminders in v1.1; fast capture on every surface |
-| Planning feels like homework | Weekly plan adoption stays low | Weekly plan is optional; goals take one line; the review is three prompts, not a form |
-| Too few project colours for heavy users | Colour stops meaning project | Six pastels plus dot shapes; archive prompt for stalled projects |
-| Offline sync conflicts corrupt notes | Lost trust | CRDT notes (Yjs) from the MVP, note history, offline sync built and tested before any other P1 work |
-| Pastel palette fails contrast in dark mode | Accessibility regression | Separate dark tokens, automated contrast checks in CI |
+| Risk                                                              | Impact                         | Mitigation                                                                                          |
+| ----------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------------------------------------------- |
+| Users keep their old to-do app and Daybook becomes a second inbox | Low retention                  | Import from Todoist, Things and Apple Reminders in v1.1; fast capture on every surface              |
+| Planning feels like homework                                      | Weekly plan adoption stays low | Weekly plan is optional; goals take one line; the review is three prompts, not a form               |
+| Too few project colours for heavy users                           | Colour stops meaning project   | Six pastels plus dot shapes; archive prompt for stalled projects                                    |
+| Offline sync conflicts corrupt notes                              | Lost trust                     | CRDT notes (Yjs) from the MVP, note history, offline sync built and tested before any other P1 work |
+| Pastel palette fails contrast in dark mode                        | Accessibility regression       | Separate dark tokens, automated contrast checks in CI                                               |
 
 **Dependencies**
 

@@ -6,14 +6,14 @@ How Daybook is watched in dev and prod for close to zero cost ([ADR 0010](../dec
 
 Taken from the PRD's non-functional requirements and measured on prod.
 
-| SLO | Target | Source |
-| --- | --- | --- |
-| API availability | 99.5% of requests are not 5xx, over 28 days | API request logs |
-| API latency | p95 < 300 ms for reads, < 500 ms for writes | `ApiLatency` metric |
-| Cold start to interactive Today | p75 ≤ 1.5 s on desktop | Web Vitals via telemetry |
-| View switch | p75 ≤ 100 ms | Custom `view_switch_ms` web metric |
-| Capture to saved | median ≤ 2 s | `item_captured.ms_to_save` analytics event |
-| Cross-device freshness | ≤ 5 s | Poll interval; checked in e2e |
+| SLO                             | Target                                      | Source                                     |
+| ------------------------------- | ------------------------------------------- | ------------------------------------------ |
+| API availability                | 99.5% of requests are not 5xx, over 28 days | API request logs                           |
+| API latency                     | p95 < 300 ms for reads, < 500 ms for writes | `ApiLatency` metric                        |
+| Cold start to interactive Today | p75 ≤ 1.5 s on desktop                      | Web Vitals via telemetry                   |
+| View switch                     | p75 ≤ 100 ms                                | Custom `view_switch_ms` web metric         |
+| Capture to saved                | median ≤ 2 s                                | `item_captured.ms_to_save` analytics event |
+| Cross-device freshness          | ≤ 5 s                                       | Poll interval; checked in e2e              |
 
 ## Signals
 
@@ -28,15 +28,15 @@ Taken from the PRD's non-functional requirements and measured on prod.
 
 EMF lines written by the `Metrics` port, namespace `Daybook/prod`. The free tier allows 10 custom metrics per account, and each metric and dimension value pair counts as one, so custom metrics are emitted in prod only (dev's `Metrics` adapter logs them without EMF). The set below is exactly 10:
 
-| Metric | Dimension values | Count | Used for |
-| --- | --- | --- | --- |
-| `ApiRequests` | `RouteClass` = read, write | 2 | Traffic |
-| `ApiErrors` | `Kind` = 4xx, 5xx | 2 | Error rate alarm |
-| `ApiLatency` | `RouteClass` = read, write | 2 | p95 alarm |
-| `DynamoConflicts` | none | 1 | Optimistic-lock retries |
-| `WebErrors` | none | 1 | Frontend error alarm |
-| `WebVitalLCP` | none | 1 | Cold start SLO |
-| `CaptureMs` | none | 1 | Capture SLO |
+| Metric            | Dimension values           | Count | Used for                |
+| ----------------- | -------------------------- | ----- | ----------------------- |
+| `ApiRequests`     | `RouteClass` = read, write | 2     | Traffic                 |
+| `ApiErrors`       | `Kind` = 4xx, 5xx          | 2     | Error rate alarm        |
+| `ApiLatency`      | `RouteClass` = read, write | 2     | p95 alarm               |
+| `DynamoConflicts` | none                       | 1     | Optimistic-lock retries |
+| `WebErrors`       | none                       | 1     | Frontend error alarm    |
+| `WebVitalLCP`     | none                       | 1     | Cold start SLO          |
+| `CaptureMs`       | none                       | 1     | Capture SLO             |
 
 Anything else (Yjs state growth, per-route detail) is a Logs Insights query over the structured logs. Adding a metric means removing one or accepting $0.30 per metric per month.
 
@@ -72,16 +72,16 @@ One CloudWatch dashboard per environment, `Daybook-{env}`:
 
 The free tier covers 10 alarms per account, so prod gets seven and dev three, all sent to the `daybook-{env}-alerts` SNS topic (email).
 
-| Alarm | Env | Condition |
-| --- | --- | --- |
-| API 5xx rate | prod | `ApiErrors{5xx}` > 2% of requests over 5 minutes, 2 of 3 periods |
-| API p95 latency | prod | `ApiLatency` p95 > 800 ms over 10 minutes |
-| Web Function throttles | prod, dev | Any `429` platform throttle in 5 minutes (AWS metric) |
-| DynamoDB throttles or system errors | prod, dev | > 0 over 5 minutes (AWS metric) |
-| Optimistic-lock conflicts | prod | `DynamoConflicts` > 20 in 5 minutes (possible client loop) |
-| Frontend errors | prod | `WebErrors` > 10 in 10 minutes |
-| Capture SLO | prod | `CaptureMs` median > 2,000 ms over 1 hour |
-| CloudFront 5xx rate | dev | `5xxErrorRate` > 5% over 5 minutes (AWS metric) |
+| Alarm                               | Env       | Condition                                                        |
+| ----------------------------------- | --------- | ---------------------------------------------------------------- |
+| API 5xx rate                        | prod      | `ApiErrors{5xx}` > 2% of requests over 5 minutes, 2 of 3 periods |
+| API p95 latency                     | prod      | `ApiLatency` p95 > 800 ms over 10 minutes                        |
+| Web Function throttles              | prod, dev | Any `429` platform throttle in 5 minutes (AWS metric)            |
+| DynamoDB throttles or system errors | prod, dev | > 0 over 5 minutes (AWS metric)                                  |
+| Optimistic-lock conflicts           | prod      | `DynamoConflicts` > 20 in 5 minutes (possible client loop)       |
+| Frontend errors                     | prod      | `WebErrors` > 10 in 10 minutes                                   |
+| Capture SLO                         | prod      | `CaptureMs` median > 2,000 ms over 1 hour                        |
+| CloudFront 5xx rate                 | dev       | `5xxErrorRate` > 5% over 5 minutes (AWS metric)                  |
 
 Deploy smoke-test failures are reported by the GitHub Actions run, not by an alarm.
 

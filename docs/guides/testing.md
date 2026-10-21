@@ -13,14 +13,14 @@ Start each feature from the outside in: a failing Playwright scenario for the us
 
 ## Test levels
 
-| Level | Tool | Where | What it covers | Speed |
-| --- | --- | --- | --- | --- |
-| Unit | Vitest | `libs/shared/domain`, `libs/api/application`, facades | Pure rules, command handlers with in-memory fakes | ms |
-| Component | Vitest + Testing Library | `libs/ui`, `libs/web/feature-*` | Rendering, interaction, a11y roles, facade wiring with a test store | ms |
-| Integration | Vitest + DynamoDB Local (Testcontainers) | `libs/api/infrastructure` | Repository queries, conditional writes, transactions | s |
-| API | Vitest + Fastify `inject` | `apps/api` (`src/http/`) | Routes, auth plugin, validation, problem details | ms |
-| Infrastructure | Vitest + CDK assertions | `apps/infra` | Resource properties, IAM scope, retention, alarms | s |
-| End-to-end | Playwright + axe | `apps/web-e2e`, `apps/api-e2e` | User journeys against the prod-like Docker Compose stack in CI, and a smoke set against dev after deploy; accessibility | s–min |
+| Level          | Tool                                     | Where                                                 | What it covers                                                                                                          | Speed |
+| -------------- | ---------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----- |
+| Unit           | Vitest                                   | `libs/shared/domain`, `libs/api/application`, facades | Pure rules, command handlers with in-memory fakes                                                                       | ms    |
+| Component      | Vitest + Testing Library                 | `libs/ui`, `libs/web/feature-*`                       | Rendering, interaction, a11y roles, facade wiring with a test store                                                     | ms    |
+| Integration    | Vitest + DynamoDB Local (Testcontainers) | `libs/api/infrastructure`                             | Repository queries, conditional writes, transactions                                                                    | s     |
+| API            | Vitest + Fastify `inject`                | `apps/api` (`src/http/`)                              | Routes, auth plugin, validation, problem details                                                                        | ms    |
+| Infrastructure | Vitest + CDK assertions                  | `apps/infra`                                          | Resource properties, IAM scope, retention, alarms                                                                       | s     |
+| End-to-end     | Playwright + axe                         | `apps/web-e2e`, `apps/api-e2e`                        | User journeys against the prod-like Docker Compose stack in CI, and a smoke set against dev after deploy; accessibility | s–min |
 
 ## Rules
 
@@ -37,14 +37,14 @@ Start each feature from the outside in: a failing Playwright scenario for the us
 
 Each PRD acceptance line becomes at least one test. Examples:
 
-| PRD | Test |
-| --- | --- |
-| CAP-3: a tag files the item and is stripped from the title | Unit: `parseCapture('Draft brief #Website', projects)` returns the project id and title `Draft brief` |
-| CAP acceptance: tag matches case-insensitively | Unit: `#WEBSITE` and `#website` resolve to the same project |
-| TOD-2: a fourth pin asks which to swap | Component: pinning a fourth task opens the swap picker; API: fourth pin without swap returns `409 top3-full` |
-| TOD-5: banner never appears twice for a day | Integration: second `CARRYOVER#{date}` put fails the condition; e2e: reload after dismiss shows no banner |
-| WK-2: progress agrees with the project page | Unit: both views use `projectProgress()`; e2e compares the two numbers |
-| NOT-5: autosave, no Save button | e2e: type, reload, text is there; no button named Save exists |
+| PRD                                                        | Test                                                                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| CAP-3: a tag files the item and is stripped from the title | Unit: `parseCapture('Draft brief #Website', projects)` returns the project id and title `Draft brief`        |
+| CAP acceptance: tag matches case-insensitively             | Unit: `#WEBSITE` and `#website` resolve to the same project                                                  |
+| TOD-2: a fourth pin asks which to swap                     | Component: pinning a fourth task opens the swap picker; API: fourth pin without swap returns `409 top3-full` |
+| TOD-5: banner never appears twice for a day                | Integration: second `CARRYOVER#{date}` put fails the condition; e2e: reload after dismiss shows no banner    |
+| WK-2: progress agrees with the project page                | Unit: both views use `projectProgress()`; e2e compares the two numbers                                       |
+| NOT-5: autosave, no Save button                            | e2e: type, reload, text is there; no button named Save exists                                                |
 
 ## Commands
 

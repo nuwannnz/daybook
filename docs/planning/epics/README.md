@@ -16,3 +16,9 @@ To create or refine epics, run the `/plan-epic` skill with a milestone, PRD IDs 
 
 | Epic | Title | Milestone | PRD | Status |
 | --- | --- | --- | --- | --- |
+| [E01](E01-workspace-and-quality-gates.md) | Workspace and quality gates | M0 | — | Ready |
+| [E02](E02-local-walking-skeleton.md) | Local walking skeleton | M0 | — | Ready |
+| [E03](E03-aws-environments-and-delivery.md) | AWS environments and delivery | M0 | — | Ready |
+| [E04](E04-observability-baseline.md) | Observability baseline | M0 | NFR privacy, analytics transport | Ready |
+| [E05](E05-accounts-and-sign-in.md) | Accounts and sign-in | M0 | NFR privacy and security | Ready |
+| [E06](E06-design-system-and-app-shell.md) | Design system and app shell | M0 | NAV-1, NAV-4 | Ready |

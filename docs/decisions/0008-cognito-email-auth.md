@@ -10,7 +10,7 @@ The design canvas has Sign in, Create account, Reset password and Mobile sign in
 ## Decision
 
 - One Cognito user pool per environment (Lite or Essentials tier, free up to 10,000 monthly active users).
-- MVP supports email and password only: sign up with email verification, sign in, sign out, reset password. The Google and Apple buttons are hidden behind a feature flag.
+- MVP supports email and password only: sign up with email verification by 6-digit code, sign in, sign out, and reset password by 6-digit code (Cognito defaults; open questions 17 and 18). The Google and Apple buttons are hidden behind a feature flag.
 - The web app uses its own screens from the design canvas, not the Cognito hosted UI. Calls go through an `AuthService` port; the adapter uses the Amplify Auth library (SRP sign-in) and is the only code that imports it.
 - The API verifies the Cognito ID or access token from the `X-Daybook-Token` header with `aws-jwt-verify` in a Fastify plugin, and derives `userId` from the `sub` claim. No endpoint trusts a user id from the body or path.
 - Cognito's built-in email sender is used for beta (50 emails per day). Moving to SES is a backlog item before public launch.

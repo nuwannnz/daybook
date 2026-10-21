@@ -14,6 +14,10 @@ Tracked from the PRD's [risks and open questions](../product/PRD.md#risks-depend
 | 6 | Do we name the product Daybook, pending a trademark check? | Nuwan | Open |
 | 7 | Account deletion: required for beta? The PRD covers export but not deletion. | Nuwan | Open |
 | 8 | When does Google sign-in return, and is Apple sign-in worth a paid developer account? | Nuwan | Open |
+| 17 | Sign-up email verification: code or link? The canvas has no verification screen. | Nuwan | Closed: 6-digit code step ([E05-S02](epics/E05-accounts-and-sign-in.md)); canvas to update |
+| 18 | Reset password: link (as in the canvas) or code (Cognito default)? | Nuwan | Closed: code entry ([E05-S04](epics/E05-accounts-and-sign-in.md)); canvas to update |
+| 19 | Terms and Privacy: who writes them, and are they needed for the private beta sign-up checkbox? | Nuwan | Open |
+| 21 | "Email me a sign-in link instead" on the sign-in canvas: in scope for v1, or remove from the design? | Nuwan | Open |
 
 ## Technical
 
@@ -27,3 +31,4 @@ Tracked from the PRD's [risks and open questions](../product/PRD.md#risks-depend
 | 14 | Is a filtered partition query fast enough for search, or is a client-side index needed? | Engineering | Open: test with 500 notes and 2,000 tasks |
 | 15 | npm or pnpm workspaces? | Engineering | Open: decide at scaffold, record in ADR 0001 |
 | 16 | Analytics retention: are 30 days of logs enough for week-4 retention metrics? | Nuwan | Open: may need S3 export before launch |
+| 20 | Does Cognito sign out other devices after a password reset, or do we call a global sign-out? The Reset canvas promises it. | Engineering | Open: E05-S04 assumes global sign-out and verifies on dev |

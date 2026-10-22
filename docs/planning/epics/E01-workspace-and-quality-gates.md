@@ -1,6 +1,6 @@
 # E01. Workspace and quality gates
 
-- Status: In progress
+- Status: Done
 - Milestone: M0 Foundations
 - PRD: none (platform)
 - Depends on: none
@@ -40,14 +40,14 @@ Out:
 
 ### E01-S01. Repository, branches and Nx workspace with enforced layers
 
-- Status: In progress
-- Waiting on the owner: GitHub repository, default branch and branch protection
+- Status: Done
+- Branch protection skipped by the owner (decision 2026-10-22); `develop` and `main` rules rely on discipline until revisited
 
 So that every library has a place and a tag, and a wrong import between layers fails before review.
 
 **Acceptance criteria**
 
-- Given the repository on GitHub, when I look at branches, then `develop` is the default, and `develop` and `main` both require a pull request and passing checks.
+- Given the repository on GitHub, when I look at branches, then `develop` is the default. Requiring a pull request and passing checks on `develop` and `main` was dropped by the owner.
 - Given the workspace, when I run `nx show projects`, then every project from the module map exists with its `scope:*` and `type:*` tags.
 - Given a file in `libs/shared/domain` that imports from `libs/api/infrastructure`, when I run lint, then it fails with a module-boundary error.
 - Given a file in `libs/ui` that imports `@reduxjs/toolkit`, when I run lint, then it fails with a banned-import error.
@@ -61,7 +61,7 @@ So that every library has a place and a tag, and a wrong import between layers f
 
 **Tasks**
 
-- [ ] Owner creates the GitHub repository; push `main`, create `develop`, set it as default, protect both
+- [x] Owner creates the GitHub repository; push `main`, create `develop`, set it as default (protection skipped)
 - [x] Decide npm or pnpm (Q15); record in ADR 0001 and close Q15
 - [x] Create the Nx workspace with `.nvmrc`, strict `tsconfig.base.json` and path aliases (`@daybook/*`)
 - [x] Generate every app and library from the [module map](../../architecture/overview.md#module-map) with its tags
